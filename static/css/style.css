@@ -355,12 +355,36 @@ h3 {
 /* Mobile Menu Toggle */
 .menu-toggle {
     display: none;
-    /* Hidden by default on desktop */
     cursor: pointer;
     flex-direction: column;
     gap: 6px;
     z-index: 1001;
-    /* Ensure above everything */
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    margin: 3px auto;
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.nav-links.active {
+    transform: translateY(0);
 }
 
 /* ... existing logic ... */
