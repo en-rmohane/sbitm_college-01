@@ -34,7 +34,7 @@
             "name": "Dr. Pankaj Singh Sisodiya",
             "role": "Head of Department",
             "quote": "\"We strive to make our students not just engineers, but innovators who solve real-world problems.\"",
-            "image": "https://via.placeholder.com/150"
+            "image": ""
         }
     },
     {
@@ -72,7 +72,7 @@
             "name": "Dr. Pankaj Singh Sisodiya",
             "role": "Program Coordinator",
             "quote": "\"Data is the new oil, and AI is the engine. We teach you how to build that engine.\"",
-            "image": "https://via.placeholder.com/150"
+            "image": ""
         }
     },
     {
@@ -116,7 +116,7 @@
             "name": "Prof. Amit Kumar",
             "role": "Head of Department",
             "quote": "",
-            "image": "https://via.placeholder.com/150"
+            "image": ""
         }
     },
     {
@@ -160,7 +160,7 @@
             "name": "Prof. Hemant Badode",
             "role": "Head of Department",
             "quote": "\"Constructing a sustainable future for the next generation.\"",
-            "image": "https://via.placeholder.com/150"
+            "image": ""
         }
     },
     {
@@ -192,7 +192,7 @@
             "name": "Prof. Suresh Patel",
             "role": "Head of Department",
             "quote": "\"Energizing the future with sustainable power solutions.\"",
-            "image": "https://via.placeholder.com/150"
+            "image": ""
         }
     }
 ]

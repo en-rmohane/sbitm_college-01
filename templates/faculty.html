@@ -32,10 +32,10 @@
                 <div class="faculty-card-img-container" style="border-color: {{ color }};">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='https://via.placeholder.com/150'" alt="{{ member.name }}"
-                        style="width: 100%; height: 100%; object-fit: cover;">
+                        onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/sbitm_logo.png') }}'"
+                        alt="{{ member.name }}" style="width: 100%; height: 100%; object-fit: cover;">
                     {% else %}
-                    <img src="https://via.placeholder.com/150" alt="{{ member.name }}"
+                    <img src="{{ url_for('static', filename='images/sbitm_logo.png') }}" alt="{{ member.name }}"
                         style="width: 100%; height: 100%; object-fit: cover;">
                     {% endif %}
                 </div>
@@ -56,10 +56,10 @@
                 <div class="faculty-card-img-container">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='https://via.placeholder.com/150'" alt="{{ member.name }}"
-                        style="width: 100%; height: 100%; object-fit: cover;">
+                        onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/sbitm_logo.png') }}'"
+                        alt="{{ member.name }}" style="width: 100%; height: 100%; object-fit: cover;">
                     {% else %}
-                    <img src="https://via.placeholder.com/150" alt="{{ member.name }}"
+                    <img src="{{ url_for('static', filename='images/sbitm_logo.png') }}" alt="{{ member.name }}"
                         style="width: 100%; height: 100%; object-fit: cover;">
                     {% endif %}
                 </div>

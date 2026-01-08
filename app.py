@@ -319,7 +319,7 @@ def manage_departments():
                 "name": hod_name,
                 "role": hod_role,
                 "quote": hod_quote,
-                "image": hod_image_filename if hod_image_filename else "https://via.placeholder.com/150"
+                "image": hod_image_filename if hod_image_filename else ""
             }
         }
         
