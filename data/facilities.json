@@ -1,0 +1,86 @@
+[
+    {
+        "id": "1",
+        "name": "Central Library",
+        "description": "A vast collection of books, journals, and digital resources to fuel your knowledge.",
+        "icon": "fas fa-book-reader",
+        "image": ""
+    },
+    {
+        "id": "2",
+        "name": "High-Tech Labs",
+        "description": "Advanced computer labs with high-speed internet and latest software tools.",
+        "icon": "fas fa-desktop",
+        "image": ""
+    },
+    {
+        "id": "3",
+        "name": "Sports Complex",
+        "description": "Facilities for cricket, football, basketball, and indoor games.",
+        "icon": "fas fa-basketball-ball",
+        "image": ""
+    },
+    {
+        "id": "4",
+        "name": "Transportation",
+        "description": "Safe and convenient bus facility covering all major routes of the city.",
+        "icon": "fas fa-bus",
+        "image": ""
+    },
+    {
+        "id": "5",
+        "name": "Cafeteria",
+        "description": "Hygienic and nutritious food served in a vibrant environment.",
+        "icon": "fas fa-coffee",
+        "image": ""
+    },
+    {
+        "id": "6",
+        "name": "Wi-Fi Campus",
+        "description": "24/7 High-speed internet connectivity throughout the campus.",
+        "icon": "fas fa-wifi",
+        "image": ""
+    },
+    {
+        "id": "7",
+        "name": "Auditorium",
+        "description": "Fully air-conditioned auditorium with a seating capacity of 500 for events and seminars.",
+        "icon": "fas fa-theater-masks",
+        "image": ""
+    },
+    {
+        "id": "8",
+        "name": "Medical Center",
+        "description": "24/7 Medical assistance with qualified staff and emergency transport facility.",
+        "icon": "fas fa-user-md",
+        "image": ""
+    },
+    {
+        "id": "10",
+        "name": "Seminar Halls",
+        "description": "Multiple seminar halls with AV facilities for department-level workshops.",
+        "icon": "fas fa-microphone-alt",
+        "image": ""
+    },
+    {
+        "id": "11",
+        "name": "Safe Campus",
+        "description": "24/7 security surveillance with CCTV coverage and trained security personnel.",
+        "icon": "fas fa-shield-alt",
+        "image": ""
+    },
+    {
+        "id": "12",
+        "name": "Green Impetus",
+        "description": "Solar power plant, rainwater harvesting, and lush green gardens.",
+        "icon": "fas fa-leaf",
+        "image": ""
+    },
+    {
+        "id": "18ad74b8-df35-46c4-9f25-ef0e3e55e2af",
+        "name": "teniss court",
+        "description": "best teniss court ",
+        "icon": "",
+        "image": "Gemini_Generated_Image_a6m2wua6m2wua6m2.png"
+    }
+]

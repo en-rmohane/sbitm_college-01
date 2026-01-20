@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container section-padding">
-    <div class="text-center">
+    <div class="text-center animate-on-scroll zoom-in">
         <h1 class="section-title">Our Esteemed Faculty</h1>
         <p style="margin-bottom: 60px; color: var(--text-dim); font-size: 1.2rem; font-style: italic;">
             "Teachers affect eternity; no one can tell where their influence stops."
@@ -28,7 +28,7 @@
         <div class="grid-strict-3">
             <!-- HODs -->
             {% for member in grouped_faculty[dept_name] if member.role == 'HOD' %}
-            <div class="glass-card faculty-card" style="border-top: 3px solid {{ color }};">
+            <div class="glass-card faculty-card animate-on-scroll card-pop" style="border-top: 3px solid {{ color }};">
                 <div class="faculty-card-img-container" style="border-color: {{ color }};">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
@@ -42,17 +42,16 @@
                 <h3 style="text-align: center; margin-bottom: 5px; color: var(--text-light);">{{ member.name }}</h3>
                 <p style="text-align: center; color: {{ color }}; font-weight: 600; margin-bottom: 15px;">{{
                     member.designation }}</p>
-                {% if member.bio %}
-                <p style="text-align: center; color: var(--text-dim); font-size: 0.9rem;">
-                    {{ member.bio }}
-                </p>
-                {% endif %}
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="{{ url_for('faculty_detail', id=member.id) }}" class="btn btn-sm btn-outline"
+                        style="border-radius: 20px; font-size: 0.8rem; padding: 5px 15px;">View Profile</a>
+                </div>
             </div>
             {% endfor %}
 
             <!-- Faculty Members -->
             {% for member in grouped_faculty[dept_name] if member.role != 'HOD' %}
-            <div class="glass-card faculty-card">
+            <div class="glass-card faculty-card animate-on-scroll card-pop">
                 <div class="faculty-card-img-container">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
@@ -77,7 +76,7 @@
     {% endfor %}
 
     <!-- Quote Section -->
-    <div class="glass-card text-center"
+    <div class="glass-card text-center animate-on-scroll zoom-in"
         style="padding: 60px; border-color: var(--accent); position: relative; overflow: hidden;">
         <div
             style="position: absolute; top: -20px; left: 20px; font-size: 10rem; opacity: 0.05; font-family: sans-serif; color: var(--accent);">

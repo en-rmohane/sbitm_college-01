@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container section-padding">
-    <div class="text-center animate-up">
+    <div class="text-center animate-on-scroll zoom-in">
         <h1 class="section-title">Academic Departments</h1>
         <p
             style="margin-bottom: 60px; color: var(--text-dim); max-width: 700px; margin-left: auto; margin-right: auto;">
@@ -12,8 +12,8 @@
     </div>
 
     <!-- Quick Nav -->
-    <div class="glass-card animate-up delay-100"
-        style="padding: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 80px; position: sticky; top: 90px; z-index: 100; backdrop-filter: blur(20px);">
+    <div class="glass-card animate-on-scroll fade-up"
+        style="transition-delay: 0.1s; padding: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 80px; position: sticky; top: 90px; z-index: 100; backdrop-filter: blur(20px);">
         {% for dept in departments %}
         <a href="#{{ dept.id }}" class="btn btn-outline" style="border-radius: 20px; padding: 8px 25px;">{{
             dept.id|upper if dept.id|length <= 4 else dept.name|truncate(10, True, '' ) }}</a>
@@ -21,8 +21,9 @@
     </div>
 
     {% for dept in departments %}
-    <section id="{{ dept.id }}" style="margin-bottom: 100px; scroll-margin-top: 180px;">
-        <div class="glass-card animate-up" style="padding: 40px; border-left: 5px solid {{ dept.theme_color }};">
+    <section id="{{ dept.id }}" style="margin-bottom: 100px; scroll-margin-top: 180px;"
+        class="animate-on-scroll fade-up">
+        <div class="glass-card" style="padding: 40px; border-left: 5px solid {{ dept.theme_color }};">
             <div
                 style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: start; margin-bottom: 30px; gap: 20px;">
                 <div>

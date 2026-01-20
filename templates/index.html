@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
-    <div class="hero-content animate-up">
+    <div class="hero-content animate-on-scroll zoom-in">
         <h1 style="font-size: 4rem; letter-spacing: -1px; margin-bottom: 25px;">
             Forge Your Destiny at <br> <span style="color: var(--accent);">SBITM</span>
         </h1>
@@ -28,17 +28,17 @@
 <!-- Features / Highlights -->
 <section class="container" style="padding-bottom: 80px;">
     <div class="grid-strict-3">
-        <div class="glass-card animate-up delay-100">
+        <div class="glass-card animate-on-scroll card-pop">
             <i class="fas fa-microchip feature-icon"></i>
             <h3>Modern Labs</h3>
             <p>State-of-the-art computer labs and mechanical workshops properly equipped for practical learning.</p>
         </div>
-        <div class="glass-card animate-up delay-200">
+        <div class="glass-card animate-on-scroll card-pop" style="transition-delay: 0.1s;">
             <i class="fas fa-user-graduate feature-icon"></i>
             <h3>Expert Faculty</h3>
             <p>Learn from experienced professors and industry experts dedicated to your academic success.</p>
         </div>
-        <div class="glass-card animate-up delay-300">
+        <div class="glass-card animate-on-scroll card-pop" style="transition-delay: 0.2s;">
             <i class="fas fa-briefcase feature-icon"></i>
             <h3>Top Placements</h3>
             <p>Consistent placement record with top MNCs. We groom you for the corporate world.</p>
@@ -50,7 +50,7 @@
 <section class="section-padding" style="background: rgba(255,255,255,0.02);">
     <div class="container">
         <div class="glass-card" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
-            <div style="flex: 1; min-width: 300px;">
+            <div style="flex: 1; min-width: 300px;" class="animate-on-scroll fade-left">
                 <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Welcome to SBITM</h2>
                 <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-dim);">
                     SBITM (Shri Balaji Institute of Technology and Management) is a premier engineering institution
@@ -67,7 +67,7 @@
                 </ul>
                 <a href="{{ url_for('about') }}" class="btn btn-primary">Read More</a>
             </div>
-            <div style="flex: 1; min-width: 300px;">
+            <div style="flex: 1; min-width: 300px;" class="animate-on-scroll fade-right">
                 <img src="{{ url_for('static', filename='images/college_building.jpg') }}" alt="SBITM Campus"
                     style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
             </div>
@@ -76,12 +76,14 @@
 </section>
 
 <!-- Recent Activity / Campus Happenings -->
+<!-- Recent Activity / Campus Happenings -->
 <section class="section-padding">
-    <div class="container animate-up delay-200">
-        <h2 class="section-title text-center">Campus Happenings</h2>
+    <div class="container">
+        <h2 class="section-title text-center animate-on-scroll zoom-in">Campus Happenings</h2>
         <div class="grid-strict-3" style="margin-top: 20px;">
             {% for item in news %}
-            <div class="glass-card" style="padding: 20px;">
+            <div class="glass-card animate-on-scroll card-pop"
+                style="padding: 20px; transition-delay: {{ loop.index0 * 0.1 }}s;">
                 <div
                     style="height: 200px; background: #333; border-radius: 10px; margin-bottom: 15px; overflow: hidden;">
                     {% if item.image.startswith('http') %}

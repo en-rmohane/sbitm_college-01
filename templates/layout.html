@@ -89,7 +89,7 @@
                 <a href="{{ url_for('index') }}" class="footer-logo">
                     <!-- Text Logo -->
                     <span
-                        style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SBITM.</span>
+                        style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">SBITM.</span>
                 </a>
                 <p
                     style="color: var(--text-dim); margin-top: 15px; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.6;">
@@ -292,6 +292,29 @@
 
     </script>
 
+    <!-- Scroll Animation Observer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach((el, index) => {
+                observer.observe(el);
+            });
+        });
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 

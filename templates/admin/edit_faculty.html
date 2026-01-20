@@ -1,0 +1,86 @@
+{% extends "admin/layout_admin.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <h1 style="color: var(--text-light);">Edit Faculty Member</h1>
+    <a href="{{ url_for('manage_faculty') }}" class="btn btn-outline" style="font-size: 0.9rem;">&larr; Back to List</a>
+</div>
+
+<div class="glass-card" style="padding: 30px; margin-bottom: 40px;">
+    <h3 style="margin-bottom: 20px; color: var(--primary);">Update Details</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Name</label>
+                <input type="text" name="name" value="{{ faculty.name }}" class="form-control" required
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Department</label>
+                <select name="department" class="form-control" required
+                    style="width: 100%; padding: 10px; background: #1e293b; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+                    <option value="Computer Science & Engineering" {% if
+                        faculty.department=='Computer Science & Engineering' %}selected{% endif %}>Computer Science &
+                        Engineering</option>
+                    <option value="AI & Data Science" {% if faculty.department=='AI & Data Science' %}selected{% endif
+                        %}>AI & Data Science</option>
+                    <option value="Mechanical Engineering" {% if faculty.department=='Mechanical Engineering'
+                        %}selected{% endif %}>Mechanical Engineering</option>
+                    <option value="Civil Engineering" {% if faculty.department=='Civil Engineering' %}selected{% endif
+                        %}>Civil Engineering</option>
+                    <option value="Electrical Engineering" {% if faculty.department=='Electrical Engineering'
+                        %}selected{% endif %}>Electrical Engineering</option>
+                </select>
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Role</label>
+                <select name="role" class="form-control" required
+                    style="width: 100%; padding: 10px; background: #1e293b; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+                    <option value="Faculty" {% if faculty.role=='Faculty' %}selected{% endif %}>Faculty</option>
+                    <option value="HOD" {% if faculty.role=='HOD' %}selected{% endif %}>Head of Department</option>
+                </select>
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Designation</label>
+                <input type="text" name="designation" value="{{ faculty.designation }}"
+                    placeholder="e.g. Assistant Professor" class="form-control" required
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Experience</label>
+                <input type="text" name="experience" value="{{ faculty.experience if faculty.experience }}"
+                    placeholder="e.g. 10+ Years" class="form-control"
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Email</label>
+                <input type="email" name="email" value="{{ faculty.email if faculty.email }}"
+                    placeholder="faculty@sbitm.in" class="form-control"
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Qualification</label>
+                <input type="text" name="qualification" value="{{ faculty.qualification if faculty.qualification }}"
+                    placeholder="e.g. M.Tech, Ph.D" class="form-control"
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Profile Image (Leave empty to
+                    keep current)</label>
+                {% if faculty.image %}
+                <p style="font-size: 0.8rem; color: var(--primary); margin-bottom: 5px;">Current: {{ faculty.image }}
+                </p>
+                {% endif %}
+                <input type="file" name="image" class="form-control"
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">
+            </div>
+            <div style="grid-column: span 2;">
+                <label style="display: block; color: var(--text-dim); margin-bottom: 5px;">Bio (Optional)</label>
+                <textarea name="bio" rows="4" placeholder="Short description" class="form-control"
+                    style="width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 6px;">{{ faculty.bio }}</textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Update Faculty</button>
+    </form>
+</div>
+{% endblock %}

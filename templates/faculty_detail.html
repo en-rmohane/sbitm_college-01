@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container section-padding">
-    <div class="glass-card animate-up"
+    <div class="glass-card animate-on-scroll zoom-in"
         style="max-width: 900px; margin: 0 auto; padding: 40px; position: relative; overflow: hidden;">
         <!-- Decorative Background Element -->
         <div
@@ -63,19 +63,20 @@
                         <h5
                             style="color: var(--text-light); margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
                             Experience</h5>
-                        <p style="color: var(--text-dim);">10+ Years (Placeholder)</p>
+                        <p style="color: var(--text-dim);">{{ faculty.experience if faculty.experience else 'N/A' }}</p>
                     </div>
                     <div>
                         <h5
                             style="color: var(--text-light); margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
                             Email</h5>
-                        <p style="color: var(--text-dim);">faculty@sbitm.in</p>
+                        <p style="color: var(--text-dim);">{{ faculty.email if faculty.email else 'N/A' }}</p>
                     </div>
                     <div>
                         <h5
                             style="color: var(--text-light); margin-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
                             Qualification</h5>
-                        <p style="color: var(--text-dim);">M.Tech / Ph.D (Placeholder)</p>
+                        <p style="color: var(--text-dim);">{{ faculty.qualification if faculty.qualification else 'N/A'
+                            }}</p>
                     </div>
                 </div>
 

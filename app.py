@@ -21,9 +21,11 @@ os.makedirs(app.config['GALLERY_FOLDER'], exist_ok=True)
 
 app.config['NEWS_FOLDER'] = 'static/images/news'
 os.makedirs(app.config['NEWS_FOLDER'], exist_ok=True)
-
 app.config['PLACEMENTS_FOLDER'] = 'static/images/placements'
 os.makedirs(app.config['PLACEMENTS_FOLDER'], exist_ok=True)
+
+app.config['FACILITIES_FOLDER'] = 'static/images/facilities'
+os.makedirs(app.config['FACILITIES_FOLDER'], exist_ok=True)
 
 # Login Required Decorator
 def login_required(f):
@@ -79,6 +81,9 @@ def manage_faculty():
         role = request.form.get('role')
         designation = request.form.get('designation')
         bio = request.form.get('bio')
+        experience = request.form.get('experience')
+        email = request.form.get('email')
+        qualification = request.form.get('qualification')
         
         # Handle Image Upload
         image_filename = ""
@@ -96,7 +101,10 @@ def manage_faculty():
             "role": role,
             "designation": designation,
             "image": image_filename,
-            "bio": bio
+            "bio": bio,
+            "experience": experience,
+            "email": email,
+            "qualification": qualification
         }
         
         faculty_list = utils.load_json('faculty.json')
@@ -107,6 +115,40 @@ def manage_faculty():
         
     faculty_list = utils.load_json('faculty.json')
     return render_template('admin/manage_faculty.html', faculty=faculty_list)
+
+@app.route('/admin/faculty/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_faculty(id):
+    faculty_list = utils.load_json('faculty.json')
+    faculty_member = next((f for f in faculty_list if f['id'] == id), None)
+    
+    if not faculty_member:
+        flash('Faculty member not found.', 'danger')
+        return redirect(url_for('manage_faculty'))
+
+    if request.method == 'POST':
+        faculty_member['name'] = request.form.get('name')
+        faculty_member['department'] = request.form.get('department')
+        faculty_member['role'] = request.form.get('role')
+        faculty_member['designation'] = request.form.get('designation')
+        faculty_member['bio'] = request.form.get('bio')
+        faculty_member['experience'] = request.form.get('experience')
+        faculty_member['email'] = request.form.get('email')
+        faculty_member['qualification'] = request.form.get('qualification')
+        
+        # Handle Image Upload - Only update if a new file is provided
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                faculty_member['image'] = filename
+
+        utils.save_json('faculty.json', faculty_list)
+        flash('Faculty details updated!', 'success')
+        return redirect(url_for('manage_faculty'))
+        
+    return render_template('admin/edit_faculty.html', faculty=faculty_member)
 
 @app.route('/admin/faculty/delete/<id>')
 @login_required
@@ -266,7 +308,56 @@ def delete_story(id):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    leadership_data = utils.load_json('leadership.json')
+    return render_template('about.html', leadership=leadership_data)
+
+# --- Leadership Management ---
+@app.route('/admin/leadership', methods=['GET', 'POST'])
+@login_required
+def manage_leadership():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        role = request.form.get('role')
+        designation = request.form.get('designation')
+        message = request.form.get('message')
+        
+        # Handle Image Upload
+        image_filename = ""
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                filename = secure_filename(file.filename)
+                # Store in faculty folder for simplicity or create specific leadership folder
+                # Using faculty folder as they are staff/faculty essentially
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) 
+                image_filename = filename
+
+        new_leader = {
+            "id": str(uuid.uuid4()),
+            "name": name,
+            "role": role,
+            "designation": designation,
+            "message": message,
+            "image": image_filename
+        }
+        
+        leadership_list = utils.load_json('leadership.json')
+        leadership_list.append(new_leader)
+        utils.save_json('leadership.json', leadership_list)
+        flash('Leadership profile added!', 'success')
+        return redirect(url_for('manage_leadership'))
+        
+    leadership_list = utils.load_json('leadership.json')
+    return render_template('admin/manage_leadership.html', leadership=leadership_list)
+
+@app.route('/admin/leadership/delete/<id>')
+@login_required
+def delete_leadership(id):
+    leadership_list = utils.load_json('leadership.json')
+    leadership_list = [l for l in leadership_list if l['id'] != id]
+    utils.save_json('leadership.json', leadership_list)
+    flash('Leadership profile deleted.', 'info')
+    return redirect(url_for('manage_leadership'))
 
 @app.route('/departments')
 def departments():
@@ -345,7 +436,52 @@ def delete_department(dept_id):
 
 @app.route('/facilities')
 def facilities():
-    return render_template('facilities.html')
+    facilities_list = utils.load_json('facilities.json')
+    return render_template('facilities.html', facilities=facilities_list)
+
+# --- Facilities Management ---
+@app.route('/admin/facilities', methods=['GET', 'POST'])
+@login_required
+def manage_facilities():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        description = request.form.get('description')
+        icon = request.form.get('icon')
+        
+        # Handle Image Upload
+        image_filename = ""
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['FACILITIES_FOLDER'], filename))
+                image_filename = filename
+        
+        new_facility = {
+            "id": str(uuid.uuid4()),
+            "name": name,
+            "description": description,
+            "icon": icon,
+            "image": image_filename
+        }
+        
+        facilities_list = utils.load_json('facilities.json')
+        facilities_list.append(new_facility)
+        utils.save_json('facilities.json', facilities_list)
+        flash('Facility added successfully!', 'success')
+        return redirect(url_for('manage_facilities'))
+        
+    facilities_list = utils.load_json('facilities.json')
+    return render_template('admin/manage_facilities.html', facilities=facilities_list)
+
+@app.route('/admin/facilities/delete/<id>')
+@login_required
+def delete_facility(id):
+    facilities_list = utils.load_json('facilities.json')
+    facilities_list = [f for f in facilities_list if f['id'] != id]
+    utils.save_json('facilities.json', facilities_list)
+    flash('Facility deleted.', 'info')
+    return redirect(url_for('manage_facilities'))
 
 @app.route('/contact')
 def contact():

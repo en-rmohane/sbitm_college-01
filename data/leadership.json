@@ -1,0 +1,34 @@
+[
+    {
+        "id": "chairman_1",
+        "role": "Chairman",
+        "name": "Chairman Name",
+        "designation": "Shri Balaji Shiksha Samiti",
+        "message": "Education is not just about acquiring degrees; it is about building character and enlightening the mind. At SBITM, we have always strived to provide an environment where students can explore their potential and develop skills that are relevant to the changing world. Our commitment is to produce not just engineers and managers, but responsible citizens who can contribute to the nation's growth.",
+        "image": ""
+    },
+    {
+        "id": "principal_1",
+        "role": "Principal",
+        "name": "Dr. P.J. Shah",
+        "designation": "Principal",
+        "message": "Welcome to SBITM. We are dedicated to maintaining high academic standards and ensuring that our students are well-prepared for the challenges of the professional world. Through a blend of rigorous academics, practical exposure, and extra-curricular activities, we shape the leaders of tomorrow. Join us in this journey of learning and discovery.",
+        "image": ""
+    },
+    {
+        "id": "0d468e15-86a2-4aa9-82de-a91cccd798e2",
+        "name": "BHAVESH KUMAR KHASDEV\t",
+        "role": "Academic Dean",
+        "designation": "",
+        "message": "Message from the Academic Dean\r\n\r\nOur institution is committed to providing quality education that fosters academic excellence, innovation, and ethical values. We focus on outcome-based learning, skill development, and research-oriented education to prepare students for professional and societal challenges.\r\n\r\nWith the support of dedicated faculty and a student-centric learning environment, we strive to bridge the gap between academia and industry. I encourage students to actively participate in academic and co-curricular activities to develop knowledge, skills, and leadership qualities.\r\n\r\nI wish all students and faculty members continued success in their academic journey.\r\n\r\nAcademic Dean\r\nSBITM BETUL",
+        "image": "ChatGPT_Image_Jan_20_2026_12_23_02_PM.png"
+    },
+    {
+        "id": "78722358-c06f-4d53-97ef-67813e30752b",
+        "name": "Mr. Shashank Mane",
+        "role": "Vice Principal",
+        "designation": "vice Principal",
+        "message": "Our institution aims to provide a disciplined, inclusive, and quality learning environment for the holistic development of students. We emphasize academic excellence, character building, and skill enhancement through innovative teaching and continuous mentoring.\r\nWith the collective efforts of faculty, staff, and students, we strive to maintain high academic standards and institutional values. I encourage students to actively engage in academics and co-curricular activities to achieve their full potential.\r\n\r\nVice Principal\r\nSBITM BETUL",
+        "image": "ChatGPT_Image_Jan_13_2026_08_31_24_PM.png"
+    }
+]

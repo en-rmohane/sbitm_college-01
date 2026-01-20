@@ -9,160 +9,23 @@
 
     <!-- Gallery Grid for Facilities -->
     <div class="grid-strict-3">
-
-        <!-- Library -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
+        {% for facility in facilities %}
+        <div class="glass-card animate-on-scroll card-pop" style="padding: 0; overflow: hidden;">
             <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-book-reader" style="font-size: 4rem; color: #334155;"></i>
+                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                {% if facility.image %}
+                <img src="{{ url_for('static', filename='images/facilities/' + facility.image) }}"
+                    alt="{{ facility.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
+                <i class="{{ facility.icon }}" style="font-size: 4rem; color: #334155;"></i>
+                {% endif %}
             </div>
             <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Central Library</h3>
-                <p style="color: var(--text-dim);">A vast collection of books, journals, and digital resources to fuel
-                    your knowledge.</p>
+                <h3 style="margin-bottom: 10px;">{{ facility.name }}</h3>
+                <p style="color: var(--text-dim);">{{ facility.description }}</p>
             </div>
         </div>
-
-        <!-- Computer Labs -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-desktop" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">High-Tech Labs</h3>
-                <p style="color: var(--text-dim);">Advanced computer labs with high-speed internet and latest software
-                    tools.</p>
-            </div>
-        </div>
-
-        <!-- Sports -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-basketball-ball" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Sports Complex</h3>
-                <p style="color: var(--text-dim);">Facilities for cricket, football, basketball, and indoor games.</p>
-            </div>
-        </div>
-
-        <!-- Transport -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-bus" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Transportation</h3>
-                <p style="color: var(--text-dim);">Safe and convenient bus facility covering all major routes of the
-                    city.</p>
-            </div>
-        </div>
-
-        <!-- Cafeteria -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-coffee" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Cafeteria</h3>
-                <p style="color: var(--text-dim);">Hygienic and nutritious food served in a vibrant environment.</p>
-            </div>
-        </div>
-
-        <!-- WiFi -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-wifi" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Wi-Fi Campus</h3>
-                <p style="color: var(--text-dim);">24/7 High-speed internet connectivity throughout the campus.</p>
-            </div>
-        </div>
-
-
-        <!-- Auditorium -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-theater-masks" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Auditorium</h3>
-                <p style="color: var(--text-dim);">Fully air-conditioned auditorium with a seating capacity of 500 for
-                    events and seminars.</p>
-            </div>
-        </div>
-
-        <!-- Medical Center -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-user-md" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Medical Center</h3>
-                <p style="color: var(--text-dim);">24/7 Medical assistance with qualified staff and emergency transport
-                    facility.</p>
-            </div>
-        </div>
-
-        <!-- Gymnasium -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-dumbbell" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Gymnasium</h3>
-                <p style="color: var(--text-dim);">Modern gymnasium equipped with latest fitness equipment for students
-                    and staff.</p>
-            </div>
-        </div>
-
-        <!-- Seminar Halls -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-microphone-alt" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Seminar Halls</h3>
-                <p style="color: var(--text-dim);">Multiple seminar halls with AV facilities for department-level
-                    workshops.</p>
-            </div>
-        </div>
-
-        <!-- Security -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-shield-alt" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Safe Campus</h3>
-                <p style="color: var(--text-dim);">24/7 security surveillance with CCTV coverage and trained security
-                    personnel.</p>
-            </div>
-        </div>
-
-        <!-- Green Campus -->
-        <div class="glass-card" style="padding: 0; overflow: hidden;">
-            <div
-                style="height: 200px; background: #1e293b; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-leaf" style="font-size: 4rem; color: #334155;"></i>
-            </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px;">Green Impetus</h3>
-                <p style="color: var(--text-dim);">Solar power plant, rainwater harvesting, and lush green gardens.</p>
-            </div>
-        </div>
-
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

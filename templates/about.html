@@ -11,14 +11,14 @@
 
     <!-- Vision & Mission -->
     <div class="feature-grid" style="margin-top: 0; margin-bottom: 80px;">
-        <div class="glass-card">
+        <div class="glass-card animate-on-scroll zoom-in">
             <h3 style="color: var(--primary);">Our Vision</h3>
             <p style="margin-top: 20px; color: var(--text-dim);">
                 To be a premier institute of technical education and management, fostering innovation, leadership, and
                 ethical values in students to serve the society and nation.
             </p>
         </div>
-        <div class="glass-card">
+        <div class="glass-card animate-on-scroll zoom-in" style="transition-delay: 0.1s;">
             <h3 style="color: var(--accent); margin-bottom: 15px;">Our Mission</h3>
             <ul style="color: var(--text-dim); list-style: none; padding: 0;">
                 <li style="margin-bottom: 15px; display: flex; align-items: flex-start;">
@@ -49,7 +49,7 @@
 
     <!-- History / Overview -->
     <div class="glass-card grid-strict-3" style="padding: 40px; align-items: flex-start;">
-        <div>
+        <div class="animate-on-scroll fade-left">
             <h2 style="margin-bottom: 20px; color: var(--text-light);">Our Legacy & Heritage</h2>
             <p style="margin-bottom: 20px; color: var(--text-dim); line-height: 1.8;">
                 Established in 2009, Shri Balaji Institute of Technology and Management (SBITM), Betul, has emerged as a
@@ -70,7 +70,7 @@
                 and affiliated to RGPV, Bhopal.
             </p>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 20px;" class="animate-on-scroll fade-right">
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px;">
                 <h4 style="color: var(--primary); margin-bottom: 5px;"><i class="fas fa-award"></i> Excellence</h4>
                 <p style="font-size: 0.9rem; color: var(--text-dim);">Consistently ranked among top engineering colleges
@@ -108,106 +108,143 @@
     </div>
     <!-- Leadership Section -->
     <div style="margin-top: 80px; margin-bottom: 80px;">
-        <h2 class="section-title text-center" style="margin-bottom: 60px;">Leadership</h2>
+        <h2 class="section-title text-center animate-on-scroll zoom-in" style="margin-bottom: 60px;">Leadership</h2>
 
         <!-- Chairman Message -->
-        <div class="glass-card grid-responsive"
+        {% set chairman = leadership | selectattr("role", "equalto", "Chairman") | first %}
+        {% if chairman %}
+        <div class="glass-card grid-responsive animate-on-scroll fade-left"
             style="padding: 40px; margin-bottom: 40px; align-items: center; grid-template-columns: auto 1fr;">
             <div
                 style="width: 200px; height: 200px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--primary); margin: 0 auto;">
+                {% if chairman.image %}
+                <img src="{{ url_for('static', filename='images/faculty/' + chairman.image) }}" alt="Chairman"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
                 <img src="https://via.placeholder.com/200" alt="Chairman"
                     style="width: 100%; height: 100%; object-fit: cover;">
+                {% endif %}
             </div>
             <div>
                 <h3 style="color: var(--primary); margin-bottom: 5px;">From the Chairman's Desk</h3>
-                <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">Shri Balaji Shiksha Samiti
+                <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">{{ chairman.name }}
+                    <br><span style="font-size: 0.9em; color: var(--text-dim);">{{ chairman.designation }}</span>
                 </h5>
                 <p style="color: var(--text-dim); line-height: 1.8; font-style: italic;">
-                    "Education is not just about acquiring degrees; it is about building character and enlightening the
-                    mind.
-                    At SBITM, we have always strived to provide an environment where students can explore their
-                    potential
-                    and develop skills that are relevant to the changing world. Our commitment is to produce not just
-                    engineers and managers, but responsible citizens who can contribute to the nation's growth."
+                    "{{ chairman.message }}"
                 </p>
             </div>
         </div>
+        {% endif %}
 
         <!-- Principal Message -->
-        <div class="glass-card grid-strict-3" style="padding: 40px; align-items: start;">
+        {% set principal = leadership | selectattr("role", "equalto", "Principal") | first %}
+        {% if principal %}
+        <div class="glass-card grid-strict-3 animate-on-scroll fade-right" style="padding: 40px; align-items: start;">
             <div style="text-align: right; order: 1;">
                 <h3 style="color: var(--accent); margin-bottom: 5px;">Principal's Message</h3>
-                <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">Dr. P.J. Shah</h5>
+                <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">{{ principal.name }}</h5>
                 <p style="color: var(--text-dim); line-height: 1.8; font-style: italic;">
-                    "Welcome to SBITM. We are dedicated to maintaining high academic standards and ensuring that our
-                    students are well-prepared for the challenges of the professional world. Through a blend of rigorous
-                    academics, practical exposure, and extra-curricular activities, we shape the leaders of tomorrow.
-                    Join us in this journey of learning and discovery."
+                    "{{ principal.message }}"
                 </p>
             </div>
             <div
                 style="width: 200px; height: 200px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--accent); margin: 0 auto; order: 2;">
+                {% if principal.image %}
+                <img src="{{ url_for('static', filename='images/faculty/' + principal.image) }}" alt="Principal"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                {% else %}
                 <img src="https://via.placeholder.com/200" alt="Principal"
                     style="width: 100%; height: 100%; object-fit: cover;">
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Academic Dean Message -->
+    {% set dean = leadership | selectattr("role", "equalto", "Academic Dean") | first %}
+    {% if dean %}
+    <div class="glass-card grid-responsive animate-on-scroll fade-left"
+        style="padding: 40px; margin-bottom: 40px; align-items: center; grid-template-columns: auto 1fr;">
+        <div
+            style="width: 200px; height: 200px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--accent); margin: 0 auto;">
+            {% if dean.image %}
+            <img src="{{ url_for('static', filename='images/faculty/' + dean.image) }}" alt="Academic Dean"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+            <img src="https://via.placeholder.com/200" alt="Academic Dean"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            {% endif %}
+        </div>
+        <div>
+            <h3 style="color: var(--accent); margin-bottom: 5px;">Message from Academic Dean</h3>
+            <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">{{ dean.name }}
+                <br><span style="font-size: 0.9em; color: var(--text-dim);">{{ dean.role }}</span>
+            </h5>
+            <p style="color: var(--text-dim); line-height: 1.8; font-style: italic; white-space: pre-line;">
+                "{{ dean.message }}"
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Vice Principal Message -->
+    {% set vp = leadership | selectattr("role", "equalto", "Vice Principal") | first %}
+    {% if vp %}
+    <div class="glass-card grid-responsive animate-on-scroll fade-right"
+        style="padding: 40px; margin-bottom: 40px; align-items: center; grid-template-columns: 1fr auto;">
+        <div>
+            <h3 style="color: var(--primary); margin-bottom: 5px;">Message from Vice Principal</h3>
+            <h5 style="color: var(--text-light); margin-bottom: 20px; font-weight: 400;">{{ vp.name }}
+                <br><span style="font-size: 0.9em; color: var(--text-dim);">{{ vp.role }}</span>
+            </h5>
+            <p style="color: var(--text-dim); line-height: 1.8; font-style: italic; white-space: pre-line;">
+                "{{ vp.message }}"
+            </p>
+        </div>
+        <div
+            style="width: 200px; height: 200px; flex-shrink: 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--primary); margin: 0 auto;">
+            {% if vp.image %}
+            <img src="{{ url_for('static', filename='images/faculty/' + vp.image) }}" alt="Vice Principal"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+            <img src="https://via.placeholder.com/200" alt="Vice Principal"
+                style="width: 100%; height: 100%; object-fit: cover;">
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Core Values -->
+    <div style="margin-bottom: 60px;">
+        <h2 class="section-title text-center" style="margin-bottom: 40px;">Core Values</h2>
+        <div class="feature-grid">
+            <div class="glass-card text-center" style="padding: 30px;">
+                <i class="fas fa-lightbulb" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h4 style="margin-bottom: 10px;">Innovation</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Encouraging creative thinking and novel solutions
+                    to real-world problems.</p>
+            </div>
+            <div class="glass-card text-center" style="padding: 30px;">
+                <i class="fas fa-handshake" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <h4 style="margin-bottom: 10px;">Integrity</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Upholding the highest standards of honesty and
+                    ethical conduct.</p>
+            </div>
+            <div class="glass-card text-center" style="padding: 30px;">
+                <i class="fas fa-award" style="font-size: 2.5rem; color: #10b981; margin-bottom: 20px;"></i>
+                <h4 style="margin-bottom: 10px;">Excellence</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Striving for the best in academics, research, and
+                    all endeavors.</p>
+            </div>
+            <div class="glass-card text-center" style="padding: 30px;">
+                <i class="fas fa-users" style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 20px;"></i>
+                <h4 style="margin-bottom: 10px;">Inclusivity</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem;">Fostering a diverse community where everyone feels
+                    valued and respected.</p>
             </div>
         </div>
     </div>
-
-    <!-- Vice Principal & Dean (New Row) -->
-    <div class="grid-strict-3">
-        <!-- Vice Principal -->
-        <div class="glass-card" style="padding: 30px; text-align: center;">
-            <div
-                style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 2px solid var(--primary);">
-                <img src="https://via.placeholder.com/150" alt="Vice Principal"
-                    style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h4 style="color: var(--text-light); margin-bottom: 5px;">Prof. Shashank Mane</h4>
-            <p style="color: var(--primary); font-size: 0.9rem;">Vice Principal</p>
-        </div>
-
-        <!-- Academic Dean -->
-        <div class="glass-card" style="padding: 30px; text-align: center;">
-            <div
-                style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; border: 2px solid var(--accent);">
-                <img src="https://via.placeholder.com/150" alt="Academic Dean"
-                    style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <h4 style="color: var(--text-light); margin-bottom: 5px;">Prof. Bhavesh Khasdev</h4>
-            <p style="color: var(--accent); font-size: 0.9rem;">Academic Dean</p>
-        </div>
-    </div>
-</div>
-
-<!-- Core Values -->
-<div style="margin-bottom: 60px;">
-    <h2 class="section-title text-center" style="margin-bottom: 40px;">Core Values</h2>
-    <div class="feature-grid">
-        <div class="glass-card text-center" style="padding: 30px;">
-            <i class="fas fa-lightbulb" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 20px;"></i>
-            <h4 style="margin-bottom: 10px;">Innovation</h4>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Encouraging creative thinking and novel solutions
-                to real-world problems.</p>
-        </div>
-        <div class="glass-card text-center" style="padding: 30px;">
-            <i class="fas fa-handshake" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 20px;"></i>
-            <h4 style="margin-bottom: 10px;">Integrity</h4>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Upholding the highest standards of honesty and
-                ethical conduct.</p>
-        </div>
-        <div class="glass-card text-center" style="padding: 30px;">
-            <i class="fas fa-award" style="font-size: 2.5rem; color: #10b981; margin-bottom: 20px;"></i>
-            <h4 style="margin-bottom: 10px;">Excellence</h4>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Striving for the best in academics, research, and
-                all endeavors.</p>
-        </div>
-        <div class="glass-card text-center" style="padding: 30px;">
-            <i class="fas fa-users" style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 20px;"></i>
-            <h4 style="margin-bottom: 10px;">Inclusivity</h4>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Fostering a diverse community where everyone feels
-                valued and respected.</p>
-        </div>
-    </div>
-</div>
 </div>
 {% endblock %}
