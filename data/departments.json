@@ -219,5 +219,38 @@
             "image": "",
             "faculty_id": "poly_hod_1"
         }
+    },
+    {
+        "id": "as",
+        "name": "Applied Sciences",
+        "icon": "fas fa-flask",
+        "theme_color": "#0891b2",
+        "text_class": "",
+        "tagline": "\"Foundations of Engineering\"",
+        "intake": 60,
+        "description": "The Applied Sciences department provides the essential scientific and mathematical foundation for all engineering disciplines.",
+        "vision": "",
+        "mission": "",
+        "labs": [
+            {
+                "name": "Chemistry Lab",
+                "icon": "fas fa-vial",
+                "color": "#0891b2",
+                "subtext": ""
+            },
+            {
+                "name": "Physics Lab",
+                "icon": "fas fa-atom",
+                "color": "#0891b2",
+                "subtext": ""
+            }
+        ],
+        "hod": {
+            "name": "Prof. TBD",
+            "role": "Head of Department",
+            "quote": "",
+            "image": "",
+            "faculty_id": ""
+        }
     }
 ]
