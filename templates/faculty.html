@@ -44,10 +44,10 @@
                 <div class="hod-img-box">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='{{ url_for('static', filename='images/admission_head.jpg') }}'"
+                        onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
                         alt="{{ member.name }}">
                     {% else %}
-                    <img src="{{ url_for('static', filename='images/admission_head.jpg') }}" alt="Default">
+                    <img src="{{ url_for('static', filename='images/faculty_placeholder.jpg') }}" alt="Default">
                     {% endif %}
                 </div>
                 <div class="hod-content">
@@ -73,10 +73,10 @@
                 <div class="faculty-img">
                     {% if member.image %}
                     <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='{{ url_for('static', filename='images/admission_head.jpg') }}'"
+                        onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
                         alt="{{ member.name }}">
                     {% else %}
-                    <img src="{{ url_for('static', filename='images/admission_head.jpg') }}" alt="Default">
+                    <img src="{{ url_for('static', filename='images/faculty_placeholder.jpg') }}" alt="Default">
                     {% endif %}
 
                     <!-- Hover Overlay -->
