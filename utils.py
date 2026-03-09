@@ -1,7 +1,8 @@
 import json
 import os
 
-DATA_DIR = 'data'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 def load_json(filename):
     """Loads data from a JSON file in the data directory."""
