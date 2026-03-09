@@ -13,19 +13,30 @@ app.config['UPLOAD_FOLDER'] = 'static/images/faculty'
 app.config['ADMIN_USERNAME'] = 'admin'
 app.config['ADMIN_PASSWORD'] = 'password123'
 
+# Helper for directory creation (handles read-only systems like Vercel)
+def safe_makedirs(path):
+    try:
+        os.makedirs(path, exist_ok=True)
+    except OSError as e:
+        if e.errno == 30: # Read-only file system
+            print(f"Warning: Could not create directory {path} (Read-only filesystem)")
+        else:
+            raise
+
 # Ensure upload directory exists
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+safe_makedirs(app.config['UPLOAD_FOLDER'])
 
 app.config['GALLERY_FOLDER'] = 'static/images/gallery'
-os.makedirs(app.config['GALLERY_FOLDER'], exist_ok=True)
+safe_makedirs(app.config['GALLERY_FOLDER'])
 
 app.config['NEWS_FOLDER'] = 'static/images/news'
-os.makedirs(app.config['NEWS_FOLDER'], exist_ok=True)
+safe_makedirs(app.config['NEWS_FOLDER'])
+
 app.config['PLACEMENTS_FOLDER'] = 'static/images/placements'
-os.makedirs(app.config['PLACEMENTS_FOLDER'], exist_ok=True)
+safe_makedirs(app.config['PLACEMENTS_FOLDER'])
 
 app.config['FACILITIES_FOLDER'] = 'static/images/facilities'
-os.makedirs(app.config['FACILITIES_FOLDER'], exist_ok=True)
+safe_makedirs(app.config['FACILITIES_FOLDER'])
 
 # Login Required Decorator
 def login_required(f):
