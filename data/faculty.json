@@ -197,11 +197,12 @@
         "department": "Civil Engineering",
         "role": "HOD",
         "designation": "Assistant Professor",
-        "image": "",
+        "image": "ChatGPT_Image_Mar_12_2026_02_00_58_PM.png",
         "bio": "Area of Specialization :- Construction Technology Management\r\nAcademic History\r\n\r\nI am currently serving as an Assistant Professor in the Department of Civil Engineering at Shri Balaji Institute of Technology & Management (SBITM), Betul, with 13 years of comprehensive teaching experience. I completed my Bachelor of Engineering (B.E.) in 2012 from Bansal Institute of Science and Technology, Bhopal, and subsequently earned my Master of Technology (M.Tech) degree in 2017 from Rabindranath Tagore University (RNTU), Bhopal.\r\n\r\nMy postgraduate research work, titled \u201cEnhancement of Soil Stabilisation with the Help of Stone Dust,\u201d reflects my expertise in Geotechnical Engineering and the application of sustainable construction materials. My broader research interests include Environmental Engineering and advanced Geospatial Technologies such as Remote Sensing and GIS.\r\n\r\nI am committed to continuous academic and professional development and have successfully completed the AICTE ATAL Academy Online Elementary FDP on \u201cRemote Sensing, GIS, GPS Technologies\u201d organized by Ujjain Engineering College. I have also participated in a Short-Term Course at NIT Jalandhar on \u201cChallenges in Wastewater, Air, and Land Pollution in India.\u201d\r\n\r\nWith over a decade of academic experience, I am dedicated to fostering holistic student development by integrating core civil engineering principles with emerging technologies and contemporary engineering practices.",
         "experience": "13 Years",
         "email": "",
-        "qualification": "M. Tech"
+        "qualification": "M. Tech",
+        "specialization": ""
     },
     {
         "id": "poly_hod_1",
@@ -214,5 +215,44 @@
         "experience": "10+ Years",
         "email": "",
         "qualification": "M.Tech"
+    },
+    {
+        "id": "4bfbc4fb-5d15-4acb-97e8-e57fadd51633",
+        "name": "Krishna Kumar Chouhan",
+        "department": "Civil Engineering",
+        "role": "Faculty",
+        "designation": "Assistant professor",
+        "image": "ChatGPT_Image_Mar_12_2026_02_22_14_PM.png",
+        "bio": "Academic History, Research & Awards (Maximum 200 words):\r\n I hold a Bachelor of Engineering degree in Civil Engineering and a Master\u2019s degree in Structural Engineering. I have over 10 years of academic experience in teaching and related academic activities. I have actively participated in faculty development programs and technical workshops to enhance my professional skills and subject knowledge.\r\nI successfully completed a two-week online Faculty Development Programme (FDP) conducted by IIT Kharagpur. Additionally, I attended a Solar Energy Workshop organized by MSME, focusing on renewable energy applications. I have also participated in several workshops conducted by my own institution as well as other colleges on various technical topics related to civil and structural engineering. These activities have contributed significantly to my continuous professional development and academic excellence.\r\n",
+        "experience": "10 years",
+        "email": "",
+        "qualification": "Master of technology",
+        "specialization": "Structural Engineering"
+    },
+    {
+        "id": "4fe7e297-ec36-455f-9dea-3d43530d2e58",
+        "name": "Ankur Rathore",
+        "department": "Civil Engineering",
+        "role": "Faculty",
+        "designation": "Assistant professor",
+        "image": "",
+        "bio": "I hold a Bachelor of Engineering degree in Civil Engineering and a Master\u2019s degree in Structural Engineering. I have over 12years of academic experience in teaching and related academic activities. I have actively participated in faculty development programs and technical workshops to enhance my professional skills and subject knowledge. He has consistently inspired under graduated student through his clear explanation and hence on approach to structural analysis. He has authored many peer-reviewed papers in reputable journal .  Beyond the classroom,he actively collaborates with industry partners on consultancy projects, guiding students in real world problem solving he also serve as a mentor for the institutes technical clubs, encouraging students to participate in national competitions .his vision drives excellence in structural engineering today ",
+        "experience": "12+",
+        "email": "",
+        "qualification": "Master of technology",
+        "specialization": "Structural Engineering"
+    },
+    {
+        "id": "c3b973d1-592f-4e3b-83bb-d3d5d15dcb42",
+        "name": "Lalit Arya",
+        "department": "Civil Engineering",
+        "role": "Faculty",
+        "designation": "Assistant professor",
+        "image": "",
+        "bio": "I Lalit Arya  a faculty of Civil Engineering department, with over 10 years of academic teaching experience. I  hold bachelor of engineering (B.E.) in civil engineering and master of technology (M.Tech) in Structural Engineering, \r\nThroughout my academic career, I  actively involved in teaching undergraduate students, focusing on both theoretical concepts and their practical applications.I published five research papers in reputed journals and attended FDP programs at RGPV Bhopal and LNCT Bhopal.\r\nI hold a Bachelor of Engineering degree in Civil Engineering and a Master\u2019s degree in Structural Engineering. I have over 12 years of academic experience in teaching and related academic activities. I have actively participated in faculty development programs and technical workshops to enhance my professional skills and subject knowledge.\r\n \r\n",
+        "experience": "10 years",
+        "email": "",
+        "qualification": "Master of technology",
+        "specialization": "Structural Engineering"
     }
 ]

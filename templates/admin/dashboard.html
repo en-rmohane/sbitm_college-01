@@ -99,9 +99,11 @@
             <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Content & Updates</h4>
             <p style="color: var(--text-muted); margin-bottom: 24px; line-height: 1.6;">Keep the community informed with
                 the latest news, events, and placement success stories.</p>
-            <div style="display: flex; gap: 12px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                 <a href="{{ url_for('manage_news') }}" class="btn-primary-action"
                     style="background: var(--accent);">News Hub</a>
+                <a href="{{ url_for('manage_announcements') }}" class="btn-primary-action"
+                    style="background: var(--accent);">Live Ticker</a>
                 <a href="{{ url_for('manage_placements') }}" class="btn-outline-action">Placements</a>
             </div>
         </div>

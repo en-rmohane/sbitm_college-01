@@ -91,7 +91,8 @@ def index():
     news_items = utils.load_json('news.json')
     placement_data = utils.load_json('placements.json')
     stories = placement_data.get('stories', []) if placement_data else []
-    return render_template('index.html', news=news_items, stories=stories)
+    announcements = utils.load_json('announcements.json')
+    return render_template('index.html', news=news_items, stories=stories, announcements=announcements)
 
 # --- Admin Routes ---
 @app.route('/admin/login', methods=['GET', 'POST'])
@@ -250,6 +251,35 @@ def delete_news(id):
     utils.save_json('news.json', news_list)
     flash('News item deleted.', 'info')
     return redirect(url_for('manage_news'))
+
+# --- Announcement Management ---
+@app.route('/admin/announcements', methods=['GET', 'POST'])
+@login_required
+def manage_announcements():
+    if request.method == 'POST':
+        text = request.form.get('text')
+        if text:
+            announcements = utils.load_json('announcements.json')
+            new_announcement = {
+                "id": str(uuid.uuid4()),
+                "text": text
+            }
+            announcements.append(new_announcement)
+            utils.save_json('announcements.json', announcements)
+            flash('Announcement added successfully!', 'success')
+        return redirect(url_for('manage_announcements'))
+        
+    announcements = utils.load_json('announcements.json')
+    return render_template('admin/manage_announcements.html', announcements=announcements)
+
+@app.route('/admin/announcements/delete/<id>')
+@login_required
+def delete_announcement(id):
+    announcements = utils.load_json('announcements.json')
+    announcements = [a for a in announcements if a['id'] != id]
+    utils.save_json('announcements.json', announcements)
+    flash('Announcement deleted.', 'info')
+    return redirect(url_for('manage_announcements'))
 
 # --- Gallery Management ---
 @app.route('/admin/gallery', methods=['GET', 'POST'])

@@ -9,45 +9,26 @@
         </div>
         <div class="notice-scroller">
             <div class="notice-content">
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Admission Open 2025-26:</strong> B.Tech & MBA Applications are live. Apply before Aug
-                        15th.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Exam Schedule:</strong> Mid-Sem exams for 3rd & 5th Semester start from Oct
-                        10th.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Placement Update:</strong> Campus Drive by TCS scheduled for Sep 25th. Register at TPO
-                        cell.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Event:</strong> Annual TechFest "Techno-SBITM" registration closes soon!</span>
-                </div>
-                <!-- Duplicate for seamless loop -->
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Admission Open 2025-26:</strong> B.Tech & MBA Applications are live. Apply before Aug
-                        15th.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Exam Schedule:</strong> Mid-Sem exams for 3rd & 5th Semester start from Oct
-                        10th.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Placement Update:</strong> Campus Drive by TCS scheduled for Sep 25th. Register at TPO
-                        cell.</span>
-                </div>
-                <div class="notice-item">
-                    <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
-                    <span><strong>Event:</strong> Annual TechFest "Techno-SBITM" registration closes soon!</span>
-                </div>
+                {% if announcements %}
+                    {% for announcement in announcements %}
+                    <div class="notice-item">
+                        <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
+                        <span>{{ announcement.text | safe }}</span>
+                    </div>
+                    {% endfor %}
+                    <!-- Duplicate for seamless loop -->
+                    {% for announcement in announcements %}
+                    <div class="notice-item">
+                        <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
+                        <span>{{ announcement.text | safe }}</span>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="notice-item">
+                        <i class="fas fa-circle text-accent" style="font-size: 8px;"></i>
+                        <span>Welcome to SBITM! Stay tuned for latest updates and announcements.</span>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
