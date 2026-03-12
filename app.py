@@ -61,6 +61,14 @@ def serve_tmp_images(filename):
     tmp_folder = os.path.join('/tmp', 'static', 'images')
     return send_from_directory(tmp_folder, filename)
 
+@app.route('/favicon.ico')
+def favicon_ico():
+    return app.send_static_file('favicon.ico')
+
+@app.route('/favicon.png')
+def favicon_png():
+    return app.send_static_file('favicon.png')
+
 # Ensure upload directory exists
 safe_makedirs(app.config['UPLOAD_FOLDER'])
 
