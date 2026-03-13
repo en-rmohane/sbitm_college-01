@@ -883,14 +883,73 @@ footer {
     .nav-links li {
         height: auto;
         width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .nav-links a {
-        padding: 15px 0;
+        padding: 15px 20px;
         font-size: 1.1rem;
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: none;
         width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Mobile Mega Menu Accordion */
+    .mega-menu {
+        position: static;
+        visibility: visible;
+        opacity: 1;
+        display: none;
+        transform: none;
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.03);
+        border-top: none;
+        padding: 0;
+    }
+
+    .has-mega.is-open .mega-menu {
+        display: block;
+    }
+
+    .mega-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 10px 0;
+    }
+
+    .mega-column {
+        padding: 0 20px;
+    }
+
+    .mega-column h3 {
+        color: var(--accent);
+        font-size: 0.8rem;
+        margin: 20px 0 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+
+    .mega-column a {
+        padding: 12px 15px !important;
+        background: transparent !important;
+        border-radius: 0;
+    }
+
+    .mega-column a strong {
+        color: white;
+        font-size: 0.95rem;
+    }
+
+    .mega-column a span {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+    }
+
+    .nav-links li:hover .mega-menu {
+        /* Disable hover effect on mobile */
+        transform: none;
     }
 
     .nav-cta {

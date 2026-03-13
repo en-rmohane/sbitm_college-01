@@ -294,6 +294,24 @@
             });
         }
 
+        // Mobile Mega Menu Accordion
+        const megaLinks = document.querySelectorAll('.has-mega > a');
+        megaLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = link.parentElement;
+                    
+                    // Close other menus
+                    document.querySelectorAll('.has-mega').forEach(item => {
+                        if (item !== parent) item.classList.remove('is-open');
+                    });
+                    
+                    parent.classList.toggle('is-open');
+                }
+            });
+        });
+
         // Scroll Animation Observer
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
