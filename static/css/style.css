@@ -342,22 +342,31 @@ img {
 
 .nav-links a {
     color: rgba(255, 255, 255, 0.9);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0 20px;
+    font-weight: 500;
+    font-size: 0.82rem;
+    padding: 0 12px;
     height: 100%;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: var(--transition);
     position: relative;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: none;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover, 
+.nav-links a.active {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--accent);
+    color: var(--accent) !important;
+}
+
+/* Ensure background height matches navbar exactly */
+.nav-links li {
+    display: flex;
+    align-items: center;
 }
 
 
