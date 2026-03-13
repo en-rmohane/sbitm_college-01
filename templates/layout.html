@@ -72,102 +72,16 @@
 
             <ul class="nav-links">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                
-                <li class="has-mega">
-                    <a href="{{ url_for('about') }}">About Us <i class="fas fa-chevron-down"></i></a>
-                    <div class="mega-menu">
-                        <div class="container mega-container">
-                            <div class="mega-column">
-                                <h3>Institution</h3>
-                                <a href="{{ url_for('about') }}">
-                                    <strong>Overview</strong>
-                                    <span>Read about the vision and legacy of SBITM.</span>
-                                </a>
-                                <a href="{{ url_for('about') }}#history">
-                                    <strong>Our History</strong>
-                                    <span>The journey of excellence since foundation.</span>
-                                </a>
-                                <a href="{{ url_for('governance') }}">
-                                    <strong>Governance</strong>
-                                    <span>Meet our executive board and leaders.</span>
-                                </a>
-                            </div>
-                            <div class="mega-column">
-                                <h3>Leadership</h3>
-                                <a href="{{ url_for('about') }}#leadership">
-                                    <strong>Leadership Team</strong>
-                                    <span>The minds driving our institutional growth.</span>
-                                </a>
-                                <a href="{{ url_for('about') }}#messages">
-                                    <strong>Messages</strong>
-                                    <span>Inspirational words from our Director & Principal.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="has-mega">
-                    <a href="{{ url_for('academics') }}">Academics <i class="fas fa-chevron-down"></i></a>
-                    <div class="mega-menu">
-                        <div class="container mega-container">
-                            <div class="mega-column">
-                                <h3>Departments</h3>
-                                <a href="{{ url_for('departments') }}">
-                                    <strong>Department Hub</strong>
-                                    <span>Explore our diverse engineering branches.</span>
-                                </a>
-                                <a href="{{ url_for('faculty') }}">
-                                    <strong>Faculty Profiles</strong>
-                                    <span>Meet our experienced academic mentors.</span>
-                                </a>
-                            </div>
-                            <div class="mega-column">
-                                <h3>Facilities</h3>
-                                <a href="{{ url_for('departments') }}">
-                                    <strong>Labs & Workshops</strong>
-                                    <span>State-of-the-art technical infrastructure.</span>
-                                </a>
-                                <a href="{{ url_for('library') }}">
-                                    <strong>Central Library</strong>
-                                    <span>Knowledge repository with digital access.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="has-mega">
-                    <a href="{{ url_for('placement') }}">Campus Life <i class="fas fa-chevron-down"></i></a>
-                    <div class="mega-menu">
-                        <div class="container mega-container">
-                            <div class="mega-column">
-                                <h3>Career</h3>
-                                <a href="{{ url_for('placement') }}">
-                                    <strong>Placements</strong>
-                                    <span>Check out our record-breaking track record.</span>
-                                </a>
-                                <a href="{{ url_for('placement') }}#recruiters">
-                                    <strong>Top Recruiters</strong>
-                                    <span>Global companies that hire from SBITM.</span>
-                                </a>
-                            </div>
-                            <div class="mega-column">
-                                <h3>Engagement</h3>
-                                <a href="{{ url_for('activities') }}">
-                                    <strong>Activities</strong>
-                                    <span>Clubs, sports, and cultural events.</span>
-                                </a>
-                                <a href="{{ url_for('news') }}">
-                                    <strong>NewsRoom</strong>
-                                    <span>Latest updates and campus announcements.</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('academics') }}">Academics</a></li>
+                <li><a href="{{ url_for('departments') }}">Departments</a></li>
+                <li><a href="{{ url_for('library') }}">Library</a></li>
+                <li><a href="{{ url_for('faculty') }}">Faculty</a></li>
+                <li><a href="{{ url_for('governance') }}">Governance</a></li>
                 <li><a href="{{ url_for('admission') }}">Admission</a></li>
+                <li><a href="{{ url_for('placement') }}">Placements</a></li>
+                <li><a href="{{ url_for('news') }}">News</a></li>
+                <li><a href="{{ url_for('activities') }}">Activities</a></li>
             </ul>
 
             <div class="nav-cta">
@@ -294,33 +208,6 @@
             });
         }
 
-        // Mobile Mega Menu Accordion
-        const megaLinks = document.querySelectorAll('.has-mega > a');
-        megaLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    const parent = link.parentElement;
-                    const isOpen = parent.classList.contains('is-open');
-                    
-                    // Close all other menus
-                    document.querySelectorAll('.has-mega').forEach(item => {
-                        item.classList.remove('is-open');
-                        const icon = item.querySelector('a i');
-                        if (icon) icon.style.transform = 'rotate(0deg)';
-                        item.querySelector('a').style.color = 'white';
-                    });
-                    
-                    // Toggle current menu
-                    if (!isOpen) {
-                        parent.classList.add('is-open');
-                        const icon = link.querySelector('i');
-                        if (icon) icon.style.transform = 'rotate(180deg)';
-                        link.style.color = 'var(--accent)';
-                    }
-                }
-            });
-        });
 
         // Scroll Animation Observer
         document.addEventListener('DOMContentLoaded', () => {
