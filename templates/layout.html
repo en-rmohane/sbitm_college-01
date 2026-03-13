@@ -301,13 +301,23 @@
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     const parent = link.parentElement;
+                    const isOpen = parent.classList.contains('is-open');
                     
-                    // Close other menus
+                    // Close all other menus
                     document.querySelectorAll('.has-mega').forEach(item => {
-                        if (item !== parent) item.classList.remove('is-open');
+                        item.classList.remove('is-open');
+                        const icon = item.querySelector('a i');
+                        if (icon) icon.style.transform = 'rotate(0deg)';
+                        item.querySelector('a').style.color = 'white';
                     });
                     
-                    parent.classList.toggle('is-open');
+                    // Toggle current menu
+                    if (!isOpen) {
+                        parent.classList.add('is-open');
+                        const icon = link.querySelector('i');
+                        if (icon) icon.style.transform = 'rotate(180deg)';
+                        link.style.color = 'var(--accent)';
+                    }
                 }
             });
         });
