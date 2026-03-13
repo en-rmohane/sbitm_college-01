@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container section-padding">
+    <!-- Hero Section -->
+    <div class="animate-on-scroll fade-up text-center" style="margin-bottom: 60px;">
+        <h1 class="section-title">Central Library</h1>
+        <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted); font-size: 1.1rem;">
+            A sanctuary for knowledge and research, our central library provides an extensive collection of technical and non-technical resources to support the academic journey of our students and faculty.
+        </p>
+        <div style="width: 60px; height: 4px; background: var(--accent); margin: 25px auto;"></div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid-4" style="margin-bottom: 80px;">
+        <div class="clean-card animate-on-scroll zoom-in" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--primary);">
+            <i class="fas fa-books" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 5px;">{{ library.stats.total_books }}</h2>
+            <p style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Total Volumes</p>
+        </div>
+        <div class="clean-card animate-on-scroll zoom-in" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--accent);" style="transition-delay: 0.1s;">
+            <i class="fas fa-book-open" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 5px;">{{ library.stats.titles }}</h2>
+            <p style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Titles</p>
+        </div>
+        <div class="clean-card animate-on-scroll zoom-in" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--success);" style="transition-delay: 0.2s;">
+            <i class="fas fa-newspaper" style="font-size: 2.5rem; color: var(--success); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 5px;">{{ library.stats.journals }}</h2>
+            <p style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Journals</p>
+        </div>
+        <div class="clean-card animate-on-scroll zoom-in" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--warning);" style="transition-delay: 0.3s;">
+            <i class="fas fa-laptop" style="font-size: 2.5rem; color: var(--warning); margin-bottom: 20px;"></i>
+            <h2 style="font-size: 2rem; color: var(--primary-dark); margin-bottom: 5px;">{{ library.stats.digital_resources }}</h2>
+            <p style="color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">E-Resources</p>
+        </div>
+    </div>
+
+    <div class="grid-2" style="gap: 50px; align-items: flex-start; margin-bottom: 80px;">
+        <!-- Incharge Section -->
+        <div class="animate-on-scroll fade-right">
+            <h3 style="color: var(--primary); margin-bottom: 30px; display: flex; align-items: center; gap: 15px;">
+                <span style="width: 30px; height: 30px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">
+                    <i class="fas fa-user-tie"></i>
+                </span>
+                Library Incharge
+            </h3>
+            <div class="clean-card" style="padding: 40px; display: flex; gap: 30px; align-items: center; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -20px; right: -20px; font-size: 8rem; color: var(--bg-off-white); z-index: 0; opacity: 0.5;">
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                <div style="flex-shrink: 0; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 5px solid white; box-shadow: var(--shadow-md); position: relative; z-index: 1;">
+                    <img src="{{ url_for('static', filename='images/faculty/' + library.incharge.image) }}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/200x200?text=Librarian'"
+                         alt="{{ library.incharge.name }}"
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="position: relative; z-index: 1;">
+                    <h4 style="color: var(--primary); font-size: 1.4rem; margin-bottom: 5px;">{{ library.incharge.name }}</h4>
+                    <p style="color: var(--accent); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px;">{{ library.incharge.designation }}</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px;"><strong>Qual:</strong> {{ library.incharge.qualification }}</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;"><strong>Exp:</strong> {{ library.incharge.experience }}</p>
+                </div>
+            </div>
+            <div style="margin-top: 30px; padding: 30px; background: var(--bg-off-white); border-radius: var(--radius-lg); border-left: 5px solid var(--primary);">
+                <p style="font-style: italic; color: var(--text-main); line-height: 1.8;">
+                    "{{ library.incharge.message }}"
+                </p>
+            </div>
+        </div>
+
+        <!-- Infrastructure & Services -->
+        <div class="animate-on-scroll fade-left">
+            <h3 style="color: var(--primary); margin-bottom: 30px; display: flex; align-items: center; gap: 15px;">
+                <span style="width: 30px; height: 30px; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 0.9rem;">
+                    <i class="fas fa-star"></i>
+                </span>
+                Key Features & Services
+            </h3>
+            <div class="grid-1" style="gap: 15px;">
+                {% for feature in library.features %}
+                <div style="background: white; padding: 18px 25px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; transition: var(--transition);" class="feature-hover">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <span style="color: var(--text-main); font-weight: 500;">{{ feature }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="animate-on-scroll fade-up">
+        <h3 style="color: var(--primary); margin-bottom: 40px; text-align: center;">Library Infrastructure Gallery</h3>
+        <div class="grid-3" style="gap: 24px;">
+            {% for img in library.images %}
+            <div class="clean-card" style="overflow: hidden; height: 250px; position: relative; cursor: pointer;" class="gallery-item">
+                <img src="{{ url_for('static', filename='images/gallery/' + img) }}" 
+                     onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600?text=Library+Facility'"
+                     alt="Library Image" 
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; opacity: 0; transition: 0.3s;" class="gallery-overlay">
+                    <p style="margin: 0; font-weight: 600;">{{ img.replace('.jpg', '').replace('_', ' ')|title }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .feature-hover:hover {
+        border-color: var(--primary);
+        transform: translateX(10px);
+        box-shadow: var(--shadow-sm);
+    }
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+    .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+    }
+    @media (max-width: 992px) {
+        .grid-2 { grid-template-columns: 1fr !important; }
+    }
+</style>
+{% endblock %}

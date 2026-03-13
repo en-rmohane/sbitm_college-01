@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container section-padding">
+    <div class="text-center" style="margin-bottom: 60px;">
+        <h1 class="section-title">News & Events</h1>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+            Stay updated with the latest happenings, academic milestones, and campus life events at SBITM.
+        </p>
+    </div>
+
+    <div class="grid-3">
+        {% for item in news %}
+        <div class="clean-card animate-on-scroll fade-up" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="height: 240px; overflow: hidden; position: relative;">
+                {% if item.image.startswith('http') %}
+                <img src="{{ item.image }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/news/' + item.image) }}" alt="{{ item.title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+                {% endif %}
+                <div style="position: absolute; top: 15px; left: 15px; background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">
+                    {{ item.date }}
+                </div>
+            </div>
+            <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: var(--primary);">{{ item.title }}</h3>
+                <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+                    {{ item.description }}
+                </p>
+                <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
+                    <span style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">SBITM Updates</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not news %}
+    <div style="text-align: center; padding: 80px 0;">
+        <i class="fas fa-newspaper" style="font-size: 4rem; color: var(--bg-off-white); margin-bottom: 20px;"></i>
+        <h3 style="color: var(--text-muted);">No news items found.</h3>
+        <p>Stay tuned for upcoming events and announcements.</p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .clean-card:hover img {
+        transform: scale(1.1);
+    }
+</style>
+{% endblock %}

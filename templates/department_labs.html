@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container section-padding">
+    <!-- Hero Section -->
+    <div class="animate-on-scroll zoom-in text-center" style="margin-bottom: 60px;">
+        <div style="display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: {{ dept.theme_color }}15; color: {{ dept.theme_color }}; border-radius: var(--radius-lg); font-size: 2.5rem; margin-bottom: 20px;">
+            <i class="{{ dept.icon }}"></i>
+        </div>
+        <h1 class="section-title" style="margin-bottom: 10px;">{{ dept.name }}</h1>
+        <h2 style="font-size: 1.5rem; color: var(--text-muted); font-weight: 500;">Labs & Workshops</h2>
+        <div style="width: 60px; height: 4px; background: {{ dept.theme_color }}; margin: 25px auto;"></div>
+    </div>
+
+    <!-- Back Navigation -->
+    <div style="margin-bottom: 40px;">
+        <a href="{{ url_for('departments') }}#{{ dept.id }}" class="btn btn-outline btn-sm" style="display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fas fa-arrow-left"></i> Back to Department
+        </a>
+    </div>
+
+    <!-- Labs Grid -->
+    <div class="grid-1" style="gap: 50px;">
+        {% for lab in dept.labs %}
+        <div class="clean-card animate-on-scroll fade-up" style="overflow: hidden; display: flex; flex-direction: column; border-top: 4px solid {{ dept.theme_color }};">
+            <div class="grid-2" style="gap: 0; align-items: stretch;">
+                <!-- Lab Image -->
+                <div style="position: relative; min-height: 300px; background: var(--bg-off-white);">
+                    {% if lab.image %}
+                    <img src="{{ url_for('static', filename='images/labs/' + lab.image) }}" 
+                         onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600?text={{ lab.name|replace(' ', '+') }}'"
+                         alt="{{ lab.name }}" 
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                    {% else %}
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: {{ dept.theme_color }}; opacity: 0.2;">
+                        <i class="{{ lab.icon or 'fas fa-microscope' }}" style="font-size: 8rem;"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div style="position: absolute; top: 20px; right: 20px; background: white; padding: 10px 15px; border-radius: 30px; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 10px;">
+                        <i class="{{ lab.icon }}" style="color: {{ dept.theme_color }};"></i>
+                        <span style="font-weight: 600; font-size: 0.85rem;">{{ lab.name }}</span>
+                    </div>
+                </div>
+
+                <!-- Lab Info -->
+                <div style="padding: 40px; background: white;">
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.8rem;">{{ lab.name }}</h3>
+                        <p style="color: var(--text-main); line-height: 1.8; font-size: 1.1rem; margin-bottom: 25px;">
+                            {{ lab.description }}
+                        </p>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <div style="padding: 8px 15px; background: var(--bg-off-white); border-radius: 6px; font-size: 0.9rem; color: var(--text-muted); border: 1px solid var(--border-color);">
+                            <i class="fas fa-check-circle text-success" style="margin-right: 5px;"></i> Fully Equipped
+                        </div>
+                        <div style="padding: 8px 15px; background: var(--bg-off-white); border-radius: 6px; font-size: 0.9rem; color: var(--text-muted); border: 1px solid var(--border-color);">
+                            <i class="fas fa-user-shield text-primary" style="margin-right: 5px;"></i> Safety Compliant
+                        </div>
+                        <div style="padding: 8px 15px; background: var(--bg-off-white); border-radius: 6px; font-size: 0.9rem; color: var(--text-muted); border: 1px solid var(--border-color);">
+                            <i class="fas fa-clock text-warning" style="margin-right: 5px;"></i> Academic Sessions
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not dept.labs %}
+    <div class="text-center" style="padding: 80px 20px; background: var(--bg-off-white); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+        <i class="fas fa-flask" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 20px; opacity: 0.3;"></i>
+        <h3 style="color: var(--primary);">Information Coming Soon</h3>
+        <p style="color: var(--text-muted);">We are currently updating the lab facilities for this department. Please check back later.</p>
+        <a href="{{ url_for('departments') }}" class="btn btn-primary" style="margin-top: 20px;">Return to Departments</a>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    @media (max-width: 992px) {
+        .grid-2 { grid-template-columns: 1fr !important; }
+        .grid-2 > div:first-child { min-height: 250px !important; }
+    }
+</style>
+{% endblock %}

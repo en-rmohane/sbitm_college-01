@@ -1,0 +1,201 @@
+{% extends "admin/layout_admin.html" %}
+
+{% block title %}Edit Department - {{ dept.name }}{% endblock %}
+{% block admin_title %}Curriculum Hub{% endblock %}
+{% block heading %}Edit {{ dept.name }}{% endblock %}
+{% block subheading %}Update vision, mission, and laboratory configurations for this unit.{% endblock %}
+
+{% block content %}
+<div class="premium-card">
+    <form method="POST" enctype="multipart/form-data" style="padding: 32px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div class="form-group">
+                <label class="premium-label">Department ID (Read-only)</label>
+                <input type="text" class="premium-input" value="{{ dept.id }}" readonly style="background: var(--bg-off-white); cursor: not-allowed;">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Full Department Name</label>
+                <input type="text" name="name" class="premium-input" value="{{ dept.name }}" required>
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Brand Icon (FontAwesome)</label>
+                <input type="text" name="icon" class="premium-input" value="{{ dept.icon }}" placeholder="fas fa-laptop-code">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Identifier Color</label>
+                <input type="text" name="theme_color" class="premium-input" value="{{ dept.theme_color }}" placeholder="#rgb or var(--code)">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Department Tagline</label>
+                <input type="text" name="tagline" class="premium-input" value="{{ dept.tagline }}" placeholder="Innovating for the future...">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Annual Intake (Seats)</label>
+                <input type="number" name="intake" class="premium-input" value="{{ dept.intake }}">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+                <label class="premium-label">Strategic Description</label>
+                <textarea name="description" rows="4" class="premium-input">{{ dept.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Vision Statement</label>
+                <textarea name="vision" rows="3" class="premium-input">{{ dept.vision }}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Mission Statement</label>
+                <textarea name="mission" rows="3" class="premium-input">{{ dept.mission }}</textarea>
+            </div>
+        </div>
+
+        <!-- HOD Configuration -->
+        <div style="margin: 40px 0 24px; padding-top: 32px; border-top: 1px dashed var(--border);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 24px;">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--primary);"></div>
+                <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">HOD Configuration</h4>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div class="form-group">
+                    <label class="premium-label">HOD Full Name</label>
+                    <input type="text" name="hod_name" class="premium-input" value="{{ dept.hod.name }}">
+                </div>
+                <div class="form-group">
+                    <label class="premium-label">HOD Official Title</label>
+                    <input type="text" name="hod_role" class="premium-input" value="{{ dept.hod.role }}">
+                </div>
+                <div class="form-group">
+                    <label class="premium-label">HOD Inspirational Quote</label>
+                    <input type="text" name="hod_quote" class="premium-input" value="{{ dept.hod.quote }}">
+                </div>
+                <div class="form-group">
+                    <label class="premium-label">HOD Portrait Image</label>
+                    {% if dept.hod.image %}
+                    <div style="margin-bottom: 10px; font-size: 0.8rem; color: var(--text-muted);">Current: {{ dept.hod.image }}</div>
+                    {% endif %}
+                    <input type="file" name="hod_image" class="premium-input" style="padding: 10px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Labs Management -->
+        <div style="margin: 40px 0 24px; padding-top: 32px; border-top: 1px dashed var(--border);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></div>
+                    <h4 style="font-size: 0.9rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Laboratories & Workshops</h4>
+                </div>
+                <button type="button" id="add-lab-btn" class="premium-btn" style="padding: 8px 16px; font-size: 0.8rem; background: var(--success);">
+                    <i class="fas fa-plus"></i> Add Lab
+                </button>
+            </div>
+
+            <div id="labs-container" style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                {% for lab in dept.labs %}
+                <div class="lab-row premium-card" style="padding: 24px; background: var(--bg-off-white); position: relative; border-radius: var(--radius-md);">
+                    <button type="button" class="remove-lab-btn" style="position: absolute; top: 15px; right: 15px; border: none; background: #fee2e2; color: var(--danger); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+                        <div class="form-group">
+                            <label class="premium-label">Lab Name</label>
+                            <input type="text" name="lab_name[]" class="premium-input" value="{{ lab.name }}" placeholder="e.g. AI Lab">
+                        </div>
+                        <div class="form-group">
+                            <label class="premium-label">Icon (FontAwesome)</label>
+                            <input type="text" name="lab_icon[]" class="premium-input" value="{{ lab.icon }}" placeholder="fas fa-microchip">
+                        </div>
+                        <div class="form-group">
+                            <label class="premium-label">Brand Color</label>
+                            <input type="text" name="lab_color[]" class="premium-input" value="{{ lab.color }}" placeholder="#hex">
+                        </div>
+                        <div class="form-group">
+                            <label class="premium-label">Facility Image</label>
+                            <input type="hidden" name="lab_existing_image[]" value="{{ lab.image }}">
+                            {% if lab.image %}
+                            <div style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                                <img src="{{ url_for('static', filename='images/labs/' + lab.image) }}" style="width: 50px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border);">
+                                <span style="font-size: 0.8rem; color: var(--text-muted); word-break: break-all;">{{ lab.image }}</span>
+                            </div>
+                            {% endif %}
+                            <input type="file" name="lab_image[]" class="premium-input" style="padding: 8px;">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="premium-label">Detailed Lab Description</label>
+                            <textarea name="lab_description[]" rows="2" class="premium-input" placeholder="What happens in this lab?">{{ lab.description }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+            <a href="{{ url_for('manage_departments') }}" class="premium-btn" style="background: var(--bg-off-white); color: var(--text-main); border: 1.5px solid var(--border);">Cancel</a>
+            <button type="submit" class="premium-btn">
+                <i class="fas fa-save" style="margin-right: 8px;"></i> Save All Changes
+            </button>
+        </div>
+    </form>
+</div>
+
+<template id="lab-template">
+    <div class="lab-row premium-card" style="padding: 24px; background: var(--bg-off-white); position: relative; border-radius: var(--radius-md);">
+        <button type="button" class="remove-lab-btn" style="position: absolute; top: 15px; right: 15px; border: none; background: #fee2e2; color: var(--danger); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+            <i class="fas fa-trash"></i>
+        </button>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+            <div class="form-group">
+                <label class="premium-label">Lab Name</label>
+                <input type="text" name="lab_name[]" class="premium-input" placeholder="e.g. AI Lab">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Icon (FontAwesome)</label>
+                <input type="text" name="lab_icon[]" class="premium-input" placeholder="fas fa-microchip">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Brand Color</label>
+                <input type="text" name="lab_color[]" class="premium-input" placeholder="#hex">
+            </div>
+            <div class="form-group">
+                <label class="premium-label">Facility Image</label>
+                <input type="hidden" name="lab_existing_image[]" value="">
+                <input type="file" name="lab_image[]" class="premium-input" style="padding: 8px;">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+                <label class="premium-label">Detailed Lab Description</label>
+                <textarea name="lab_description[]" rows="2" class="premium-input" placeholder="What happens in this lab?"></textarea>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const labsContainer = document.getElementById('labs-container');
+    const addLabBtn = document.getElementById('add-lab-btn');
+    const labTemplate = document.getElementById('lab-template');
+
+    // Add Lab
+    addLabBtn.addEventListener('click', function() {
+        const clone = labTemplate.content.cloneNode(true);
+        labsContainer.appendChild(clone);
+    });
+
+    // Remove Lab (Event Delegation)
+    labsContainer.addEventListener('click', function(e) {
+        if (e.target.closest('.remove-lab-btn')) {
+            const row = e.target.closest('.lab-row');
+            row.remove();
+        }
+    });
+});
+</script>
+
+<style>
+    .premium-label { font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 8px; display: block; }
+    .premium-input { width: 100%; padding: 12px 16px; background: var(--bg-body); border: 1.5px solid var(--border); border-radius: 10px; color: var(--text-main); font-size: 0.9rem; transition: all 0.2s; }
+    .premium-input:focus { outline: none; border-color: var(--primary); background: white; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); }
+    .premium-btn { border: none; padding: 12px 24px; border-radius: 10px; color: white; background: var(--primary); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; text-decoration: none; }
+    .premium-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+</style>
+{% endblock %}

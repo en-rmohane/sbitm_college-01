@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container section-padding">
+    <div class="text-center" style="margin-bottom: 60px;">
+        <h1 class="section-title">Institutional Governance</h1>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+            SBITM is committed to excellence through adherence to the regulations and standards set by India's premier educational governing bodies.
+        </p>
+    </div>
+
+    <!-- Governance Grid -->
+    <div class="grid-2">
+        {% for body in governance %}
+        <div class="clean-card animate-on-scroll fade-up" style="display: flex; flex-direction: row; gap: 30px; align-items: start; padding: 40px;">
+            <div style="width: 120px; height: 120px; flex-shrink: 0; background: white; border-radius: var(--radius-md); padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+                <img src="{{ url_for('static', filename='images/governance/' + body.logo) if body.logo else url_for('static', filename='images/sbitm_logo.png') }}" 
+                     alt="{{ body.name }} Logo" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+            </div>
+            <div style="flex-grow: 1;">
+                <div style="margin-bottom: 10px;">
+                    <span style="display: inline-block; padding: 4px 12px; border-radius: 20px; background: var(--bg-off-white); color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
+                        {{ body.type }}
+                    </span>
+                </div>
+                <h3 style="margin-bottom: 5px; color: var(--primary);">{{ body.name }}</h3>
+                <h4 style="font-size: 1rem; color: var(--text-muted); margin-bottom: 15px; font-weight: 500;">{{ body.full_name }}</h4>
+                <p style="color: var(--text-main); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px;">
+                    {{ body.description }}
+                </p>
+                <a href="{{ body.website }}" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.85rem;">
+                    Visit Official Website <i class="fas fa-external-link-alt" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Recognition Section -->
+    <div class="clean-card animate-on-scroll zoom-in" style="margin-top: 60px; padding: 40px; background: var(--primary); color: white;">
+        <div class="grid-2" style="align-items: center;">
+            <div>
+                <h2 style="color: white; margin-bottom: 20px;">Quality Assurance</h2>
+                <p style="color: rgba(255,255,255,0.8); line-height: 1.8;">
+                    Our institution undergoes regular inspections and audits by these governing bodies to ensure that we maintain the highest standards of technical education, infrastructure, and faculty quality.
+                </p>
+                <div style="display: flex; gap: 20px; margin-top: 30px;">
+                    <div class="stat-item">
+                        <span style="display: block; font-size: 2rem; font-weight: 700; color: var(--accent);">15+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Years of Excellence</span>
+                    </div>
+                    <div class="stat-item">
+                        <span style="display: block; font-size: 2rem; font-weight: 700; color: var(--accent);">AICTE</span>
+                        <span style="font-size: 0.9rem; opacity: 0.8;">Approved Programs</span>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <i class="fas fa-shield-alt" style="font-size: 8rem; color: rgba(255,255,255,0.1);"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

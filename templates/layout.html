@@ -20,15 +20,50 @@
 
 <body>
 
-    <!-- Navbar -->
+    <!-- Top Utility Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="top-bar-left">
+                <span class="top-bar-link" id="current-date-time">
+                    <i class="far fa-calendar-alt"></i> Loading date...
+                </span>
+                <a href="#" class="top-bar-link"><i class="fas fa-universal-access"></i> Screen Reader Access</a>
+            </div>
+            <div class="top-bar-right">
+                <a href="/admin/login" class="top-bar-link"><i class="fas fa-user-shield"></i> Admin Login</a>
+                <a href="#" class="top-bar-link">Skip to main content</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Institutional Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-section">
+                <a href="{{ url_for('index') }}" class="brand-logo">
+                    <img src="{{ url_for('static', filename='images/sbitm_logo.png') }}" alt="SBITM Logo">
+                </a>
+                <div class="brand-text">
+                    <h1>Shri Balaji Institute <br> of Technology & Management</h1>
+                    <p>Approved by AICTE, Affiliated to RGPV, Bhopal (M.P.)</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="recognition-badge">
+                    <img src="{{ url_for('static', filename='images/aicte_logo.jpg') }}" alt="AICTE">
+                    <span>AICTE<br>Approved</span>
+                </div>
+                <div class="recognition-badge">
+                    <img src="{{ url_for('static', filename='images/rgpv_logo.png') }}" alt="RGPV">
+                    <span>Affiliated to<br>RGPV Bhopal</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="{{ url_for('index') }}" class="logo">
-                <!-- Using text based logo for high quality, or image if preferred locally -->
-                <img src="{{ url_for('static', filename='images/sbitm_logo.png') }}" alt="SBITM Logo">
-                <span class="logo-text">SBITM</span>
-            </a>
-
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
                 <span></span>
@@ -37,16 +72,107 @@
 
             <ul class="nav-links">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('about') }}">About</a></li>
-                <li><a href="{{ url_for('academics') }}">Academics</a></li>
-                <li><a href="{{ url_for('departments') }}">Departments</a></li>
-                <li><a href="{{ url_for('faculty') }}">Faculty</a></li>
+                
+                <li class="has-mega">
+                    <a href="{{ url_for('about') }}">About Us <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="container mega-container">
+                            <div class="mega-column">
+                                <h3>Institution</h3>
+                                <a href="{{ url_for('about') }}">
+                                    <strong>Overview</strong>
+                                    <span>Read about the vision and legacy of SBITM.</span>
+                                </a>
+                                <a href="{{ url_for('about') }}#history">
+                                    <strong>Our History</strong>
+                                    <span>The journey of excellence since foundation.</span>
+                                </a>
+                                <a href="{{ url_for('governance') }}">
+                                    <strong>Governance</strong>
+                                    <span>Meet our executive board and leaders.</span>
+                                </a>
+                            </div>
+                            <div class="mega-column">
+                                <h3>Leadership</h3>
+                                <a href="{{ url_for('about') }}#leadership">
+                                    <strong>Leadership Team</strong>
+                                    <span>The minds driving our institutional growth.</span>
+                                </a>
+                                <a href="{{ url_for('about') }}#messages">
+                                    <strong>Messages</strong>
+                                    <span>Inspirational words from our Director & Principal.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="has-mega">
+                    <a href="{{ url_for('academics') }}">Academics <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="container mega-container">
+                            <div class="mega-column">
+                                <h3>Departments</h3>
+                                <a href="{{ url_for('departments') }}">
+                                    <strong>Department Hub</strong>
+                                    <span>Explore our diverse engineering branches.</span>
+                                </a>
+                                <a href="{{ url_for('faculty') }}">
+                                    <strong>Faculty Profiles</strong>
+                                    <span>Meet our experienced academic mentors.</span>
+                                </a>
+                            </div>
+                            <div class="mega-column">
+                                <h3>Facilities</h3>
+                                <a href="{{ url_for('departments') }}">
+                                    <strong>Labs & Workshops</strong>
+                                    <span>State-of-the-art technical infrastructure.</span>
+                                </a>
+                                <a href="{{ url_for('library') }}">
+                                    <strong>Central Library</strong>
+                                    <span>Knowledge repository with digital access.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="has-mega">
+                    <a href="{{ url_for('placement') }}">Campus Life <i class="fas fa-chevron-down"></i></a>
+                    <div class="mega-menu">
+                        <div class="container mega-container">
+                            <div class="mega-column">
+                                <h3>Career</h3>
+                                <a href="{{ url_for('placement') }}">
+                                    <strong>Placements</strong>
+                                    <span>Check out our record-breaking track record.</span>
+                                </a>
+                                <a href="{{ url_for('placement') }}#recruiters">
+                                    <strong>Top Recruiters</strong>
+                                    <span>Global companies that hire from SBITM.</span>
+                                </a>
+                            </div>
+                            <div class="mega-column">
+                                <h3>Engagement</h3>
+                                <a href="{{ url_for('activities') }}">
+                                    <strong>Activities</strong>
+                                    <span>Clubs, sports, and cultural events.</span>
+                                </a>
+                                <a href="{{ url_for('news') }}">
+                                    <strong>NewsRoom</strong>
+                                    <span>Latest updates and campus announcements.</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
                 <li><a href="{{ url_for('admission') }}">Admission</a></li>
-                <li><a href="{{ url_for('placement') }}">Placement</a></li>
-                <li><a href="{{ url_for('activities') }}">Activities</a></li>
-                <li><a href="{{ url_for('contact') }}" class="btn btn-primary"
-                        style="padding: 8px 20px; color: white;">Contact Us</a></li>
             </ul>
+
+            <div class="nav-cta">
+                <a href="{{ url_for('contact') }}" class="btn-nav">Contact Us</a>
+            </div>
         </div>
     </nav>
 
@@ -56,69 +182,108 @@
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer style="background-color: var(--bg-dark); color: white; padding: 80px 0 0;">
         <div class="container footer-content">
             <!-- Col 1: Brand & About -->
             <div class="footer-brand">
-                <h2>SBITM.</h2>
-                <p>
-                    Shri Balaji Institute of Technology & Management.<br>
-                    Approved by AICTE & Affiliated to RGPV Bhopal.<br>
-                    <strong>Creating Leaders since 2009.</strong>
+                <h2 style="color: var(--accent); font-family: var(--font-heading); margin-bottom: 20px;">SBITM.</h2>
+                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.8;">
+                    Shri Balaji Institute of Technology & Management is dedicated to providing high-quality technical
+                    education and fostering innovation in the heart of Madhya Pradesh.
                 </p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                <div class="social-icons" style="display: flex; gap: 15px; margin-top: 30px;">
+                    <a href="#"
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: var(--transition);"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="#"
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: var(--transition);"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#"
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: var(--transition);"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="#"
+                        style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; transition: var(--transition);"><i
+                            class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
             <!-- Col 2: Quick Links -->
             <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="{{ url_for('about') }}">About Institution</a></li>
-                    <li><a href="{{ url_for('admission') }}">Admissions</a></li>
-                    <li><a href="{{ url_for('placement') }}">Placements</a></li>
-                    <li><a href="{{ url_for('activities') }}">Activities</a></li>
-                    <li><a href="{{ url_for('gallery') }}">Campus Life</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                <h4
+                    style="color: white; font-size: 1.1rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 8px; margin-bottom: 25px;">
+                    Quick Links</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('about') }}"
+                            style="color: #94a3b8; transition: var(--transition);">About Institution</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('admission') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Admissions</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('placement') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Placements</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('activities') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Activities</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('news') }}"
+                            style="color: #94a3b8; transition: var(--transition);">News & Events</a></li>
                 </ul>
             </div>
 
-            <!-- Col 3: Departments -->
+            <!-- Col 3: Academics -->
             <div class="footer-links">
-                <h4>Academics</h4>
-                <ul>
-                    <li><a href="{{ url_for('departments') }}">Computer Science</a></li>
-                    <li><a href="{{ url_for('departments') }}">AI & Data Science</a></li>
-                    <li><a href="{{ url_for('departments') }}">Civil Engineering</a></li>
-                    <li><a href="{{ url_for('departments') }}">Mechanical Engg</a></li>
-                    <li><a href="{{ url_for('departments') }}">Management (MBA)</a></li>
+                <h4
+                    style="color: white; font-size: 1.1rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 8px; margin-bottom: 25px;">
+                    Academics</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('departments') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Department Hub</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('faculty') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Our Faculty</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('governance') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Governance</a></li>
+                    <li style="margin-bottom: 12px;"><a href="{{ url_for('gallery') }}"
+                            style="color: #94a3b8; transition: var(--transition);">Campus Life</a></li>
                 </ul>
             </div>
 
             <!-- Col 4: Contact Info -->
             <div class="footer-links">
-                <h4>Reach Us</h4>
-                <ul style="color: var(--text-muted);">
-                    <li><i class="fas fa-map-marker-alt text-primary" style="margin-right: 10px;"></i> Betul-Bhopal
-                        Highway, Betul (M.P.)</li>
-                    <li><i class="fas fa-phone-alt text-primary" style="margin-right: 10px;"></i> +91 9993-999-999</li>
-                    <li><i class="fas fa-envelope text-primary" style="margin-right: 10px;"></i> admission@sbitm.in</li>
+                <h4
+                    style="color: white; font-size: 1.1rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 8px; margin-bottom: 25px;">
+                    Reach Us</h4>
+                <ul style="list-style: none; padding: 0; color: #94a3b8;">
+                    <li style="margin-bottom: 15px; display: flex; gap: 12px;"><i class="fas fa-map-marker-alt"
+                            style="color: var(--accent); margin-top: 5px;"></i> <span>Betul-Bhopal Highway, Betul
+                            (M.P.)</span></li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 12px;"><i class="fas fa-phone-alt"
+                            style="color: var(--accent); margin-top: 5px;"></i> <span>+91 9993-999-999</span></li>
+                    <li style="margin-bottom: 15px; display: flex; gap: 12px;"><i class="fas fa-envelope"
+                            style="color: var(--accent); margin-top: 5px;"></i> <span>admission@sbitm.in</span></li>
                 </ul>
             </div>
         </div>
 
-        <div class="copyright">
-            <p>&copy; 2025 SBITM College. All Rights Reserved. | <a href="#" style="color: var(--primary);">Privacy
-                    Policy</a></p>
+        <div
+            style="margin-top: 60px; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <p style="color: #64748b; font-size: 0.85rem;">&copy; 2025 SBITM College. All Rights Reserved. | <a
+                        href="#" style="color: #94a3b8;">Privacy Policy</a></p>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
+        // Update Current Date/Time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const dateTimeString = now.toLocaleDateString('en-US', options);
+            const dtElement = document.getElementById('current-date-time');
+            if (dtElement) {
+                dtElement.innerHTML = `<i class="far fa-calendar-alt" style="margin-right: 8px; color: var(--accent);"></i> ${dateTimeString}`;
+            }
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');

@@ -87,6 +87,9 @@ safe_makedirs(app.config['FACILITIES_FOLDER'])
 app.config['ACTIVITIES_FOLDER'] = 'static/images/activities'
 safe_makedirs(app.config['ACTIVITIES_FOLDER'])
 
+app.config['LABS_FOLDER'] = 'static/images/labs'
+safe_makedirs(app.config['LABS_FOLDER'])
+
 # Login Required Decorator
 def login_required(f):
     @wraps(f)
@@ -262,6 +265,33 @@ def delete_news(id):
     utils.save_json('news.json', news_list)
     flash('News item deleted.', 'info')
     return redirect(url_for('manage_news'))
+
+@app.route('/admin/news/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_news(id):
+    news_list = utils.load_json('news.json')
+    item = next((n for n in news_list if n['id'] == id), None)
+    
+    if not item:
+        flash('News item not found.', 'danger')
+        return redirect(url_for('manage_news'))
+
+    if request.method == 'POST':
+        item['title'] = request.form.get('title')
+        item['date'] = request.form.get('date')
+        item['description'] = request.form.get('description')
+        
+        # Handle Image Upload - Only update if a new file is provided
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                item['image'] = save_file_safely(file, app.config['NEWS_FOLDER'])
+
+        utils.save_json('news.json', news_list)
+        flash('News item updated successfully!', 'success')
+        return redirect(url_for('manage_news'))
+        
+    return render_template('admin/edit_news.html', item=item)
 
 # --- Announcement Management ---
 @app.route('/admin/announcements', methods=['GET', 'POST'])
@@ -446,6 +476,15 @@ def departments():
     departments_list = utils.load_json('departments.json')
     return render_template('departments.html', departments=departments_list)
 
+@app.route('/departments/<dept_id>/labs')
+def department_labs(dept_id):
+    departments_list = utils.load_json('departments.json')
+    dept = next((d for d in departments_list if d['id'] == dept_id), None)
+    if not dept:
+        flash('Department not found.', 'danger')
+        return redirect(url_for('departments'))
+    return render_template('department_labs.html', dept=dept)
+
 # --- Departments Management ---
 @app.route('/admin/departments', methods=['GET', 'POST'])
 @login_required
@@ -505,6 +544,74 @@ def manage_departments():
     departments_list = utils.load_json('departments.json')
     return render_template('admin/manage_departments.html', departments=departments_list)
 
+@app.route('/admin/departments/edit/<dept_id>', methods=['GET', 'POST'])
+@login_required
+def edit_department(dept_id):
+    departments_list = utils.load_json('departments.json')
+    dept = next((d for d in departments_list if d['id'] == dept_id), None)
+    
+    if not dept:
+        flash('Department not found.', 'danger')
+        return redirect(url_for('manage_departments'))
+
+    if request.method == 'POST':
+        dept['name'] = request.form.get('name')
+        dept['icon'] = request.form.get('icon')
+        dept['theme_color'] = request.form.get('theme_color')
+        dept['tagline'] = request.form.get('tagline')
+        dept['intake'] = int(request.form.get('intake', 0))
+        dept['description'] = request.form.get('description')
+        dept['vision'] = request.form.get('vision')
+        dept['mission'] = request.form.get('mission')
+        
+        # HOD fields
+        dept['hod']['name'] = request.form.get('hod_name')
+        dept['hod']['role'] = request.form.get('hod_role')
+        dept['hod']['quote'] = request.form.get('hod_quote')
+        
+        # Handle HOD Image Upload
+        if 'hod_image' in request.files:
+            file = request.files['hod_image']
+            if file and file.filename != '':
+                dept['hod']['image'] = save_file_safely(file, app.config['UPLOAD_FOLDER'])
+
+        # Handle Labs (Parsed from dynamic form fields)
+        lab_names = request.form.getlist('lab_name[]')
+        lab_icons = request.form.getlist('lab_icon[]')
+        lab_colors = request.form.getlist('lab_color[]')
+        lab_descriptions = request.form.getlist('lab_description[]')
+        lab_existing_imgs = request.form.getlist('lab_existing_image[]')
+        lab_files = request.files.getlist('lab_image[]')
+        
+        new_labs = []
+        # In multi-file upload, empty inputs are still sent. We need to match by index.
+        # However, browsers sometimes skip empty file inputs or send empty objects.
+        # A safer way is to check the length of lab_names and iterate.
+        for i in range(len(lab_names)):
+            if lab_names[i].strip():
+                lab_img = lab_existing_imgs[i] if i < len(lab_existing_imgs) else ""
+                
+                # Check if a new file was uploaded for this specific index
+                if i < len(lab_files):
+                    file = lab_files[i]
+                    if file and file.filename != '':
+                        lab_img = save_file_safely(file, app.config['LABS_FOLDER'])
+                
+                new_labs.append({
+                    "name": lab_names[i],
+                    "icon": lab_icons[i] if i < len(lab_icons) else "fas fa-flask",
+                    "color": lab_colors[i] if i < len(lab_colors) else "#666",
+                    "image": lab_img,
+                    "description": lab_descriptions[i] if i < len(lab_descriptions) else ""
+                })
+        dept['labs'] = new_labs
+
+        utils.save_json('departments.json', departments_list)
+        flash('Department details updated successfully!', 'success')
+        return redirect(url_for('manage_departments'))
+        
+    return render_template('admin/edit_department.html', dept=dept)
+
 @app.route('/admin/departments/delete/<dept_id>')
 @login_required
 def delete_department(dept_id):
@@ -518,6 +625,11 @@ def delete_department(dept_id):
 def facilities():
     facilities_list = utils.load_json('facilities.json')
     return render_template('facilities.html', facilities=facilities_list)
+
+@app.route('/library')
+def library():
+    library_data = utils.load_json('library.json')
+    return render_template('library.html', library=library_data)
 
 # --- Facilities Management ---
 @app.route('/admin/facilities', methods=['GET', 'POST'])
@@ -622,6 +734,17 @@ def activities():
     activities_list.sort(key=lambda x: x.get('date', ''), reverse=True)
     return render_template('activities.html', activities=activities_list)
 
+@app.route('/governance')
+def governance():
+    governance_data = utils.load_json('governance.json')
+    return render_template('governance.html', governance=governance_data)
+
+@app.route('/news')
+def news():
+    news_items = utils.load_json('news.json')
+    # Sort news by date if possible (assuming date format is consistent)
+    return render_template('news.html', news=news_items)
+
 @app.route('/admin/activities', methods=['GET', 'POST'])
 @login_required
 def manage_activities():
@@ -668,6 +791,55 @@ def delete_activity(id):
     utils.save_json('activities.json', activities_list)
     flash('Activity deleted successfully!', 'success')
     return redirect(url_for('manage_activities'))
+
+# --- Governance Management ---
+@app.route('/admin/governance', methods=['GET', 'POST'])
+@login_required
+def manage_governance():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        full_name = request.form.get('full_name')
+        type_body = request.form.get('type')
+        description = request.form.get('description')
+        website = request.form.get('website')
+        
+        # Handle Logo Upload
+        logo_filename = ""
+        if 'logo' in request.files:
+            file = request.files['logo']
+            if file and file.filename != '':
+                # Ensure governance folder exists in static
+                gov_folder = os.path.join('static', 'images', 'governance')
+                safe_makedirs(gov_folder)
+                logo_filename = save_file_safely(file, gov_folder)
+
+        new_body = {
+            "id": str(uuid.uuid4()),
+            "name": name,
+            "full_name": full_name,
+            "type": type_body,
+            "description": description,
+            "logo": logo_filename,
+            "website": website
+        }
+        
+        governance_list = utils.load_json('governance.json')
+        governance_list.append(new_body)
+        utils.save_json('governance.json', governance_list)
+        flash('Governing body added successfully!', 'success')
+        return redirect(url_for('manage_governance'))
+        
+    governance_list = utils.load_json('governance.json')
+    return render_template('admin/manage_governance.html', governance=governance_list)
+
+@app.route('/admin/governance/delete/<id>')
+@login_required
+def delete_governance(id):
+    governance_list = utils.load_json('governance.json')
+    governance_list = [g for g in governance_list if g['id'] != id]
+    utils.save_json('governance.json', governance_list)
+    flash('Governing body removed successfully.', 'info')
+    return redirect(url_for('manage_governance'))
 
 @app.route('/admin/activities/edit/<id>', methods=['GET', 'POST'])
 @login_required

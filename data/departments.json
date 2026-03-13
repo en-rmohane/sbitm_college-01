@@ -15,19 +15,22 @@
                 "name": "Python / AI Lab",
                 "icon": "fab fa-python",
                 "color": "#ffd43b",
-                "subtext": ""
+                "image": "cse_ai_lab.jpg",
+                "description": "Equipped with high-end workstations for Machine Learning and Artificial Intelligence projects. Students learn Python, TensorFlow, and PyTorch."
             },
             {
                 "name": "DBMS Lab",
                 "icon": "fas fa-database",
                 "color": "#0ea5e9",
-                "subtext": ""
+                "image": "cse_dbms_lab.jpg",
+                "description": "Dedicated to database management systems, Oracle, and SQL training. Focused on structured data handling and backend development."
             },
             {
                 "name": "IoT & Networking",
                 "icon": "fas fa-network-wired",
                 "color": "#f43f5e",
-                "subtext": ""
+                "image": "cse_iot_lab.jpg",
+                "description": "Equipped with Arduino, Raspberry Pi, and Cisco networking kits to explore the Internet of Things and complex network architectures."
             }
         ],
         "hod": {
@@ -54,19 +57,15 @@
                 "name": "Machine Learning",
                 "icon": "fas fa-robot",
                 "color": "var(--accent)",
-                "subtext": ""
+                "image": "aids_ml_lab.jpg",
+                "description": "Specialized lab for deep learning and predictive modeling. Features powerful GPU-enabled systems for intensive computing."
             },
             {
                 "name": "Big Data",
                 "icon": "fas fa-chart-line",
                 "color": "var(--accent)",
-                "subtext": ""
-            },
-            {
-                "name": "NLP",
-                "icon": "fas fa-language",
-                "color": "var(--accent)",
-                "subtext": ""
+                "image": "aids_bigdata_lab.jpg",
+                "description": "Hadoop and Spark based infrastructure for handling massive datasets and distributed computing environments."
             }
         ],
         "hod": {
@@ -93,25 +92,22 @@
                 "name": "Thermodynamics",
                 "icon": "fas fa-fire",
                 "color": "#ef4444",
-                "subtext": "Engines & Boilers"
-            },
-            {
-                "name": "CAD/CAM Lab",
-                "icon": "fas fa-drafting-compass",
-                "color": "#ef4444",
-                "subtext": "AutoCAD / SolidWorks"
+                "image": "mech_thermal_lab.jpg",
+                "description": "Analysis of heat transfer, IC engines, and boiler operations. Practical understanding of energy conversion systems."
             },
             {
                 "name": "Workshop",
                 "icon": "fas fa-wrench",
                 "color": "#ef4444",
-                "subtext": "Lathe, Welding"
+                "image": "mech_workshop.jpg",
+                "description": "Central workshop featuring lathes, drilling machines, and welding stations. The heart of practical mechanical training."
             },
             {
                 "name": "Automobile Lab",
                 "icon": "fas fa-car",
                 "color": "#ef4444",
-                "subtext": "Vehicle Transmission"
+                "image": "mech_auto_lab.jpg",
+                "description": "Study of chassis construction, transmission systems, and modern engine diagnostics using real-world vehicle models."
             }
         ],
         "hod": {
@@ -138,25 +134,15 @@
                 "name": "Concrete Tech",
                 "icon": "fas fa-hard-hat",
                 "color": "#22c55e",
-                "subtext": "Material Testing"
+                "image": "civil_concrete_lab.jpg",
+                "description": "Compression testing, slump tests, and material quality assessment for infrastructure development."
             },
             {
                 "name": "Surveying Lab",
                 "icon": "fas fa-map-marked-alt",
                 "color": "#22c55e",
-                "subtext": "Total Station / GPS"
-            },
-            {
-                "name": "Fluid Mechanics",
-                "icon": "fas fa-water",
-                "color": "#22c55e",
-                "subtext": "Hydraulics"
-            },
-            {
-                "name": "Geology Lab",
-                "icon": "fas fa-mountain",
-                "color": "#22c55e",
-                "subtext": "Soil Testing"
+                "image": "civil_survey_lab.jpg",
+                "description": "Equipped with Total Stations, Theodolites, and GPS for accurate land measurement and mapping exercises."
             }
         ],
         "hod": {
@@ -181,15 +167,17 @@
         "labs": [
             {
                 "name": "Solar Energy",
-                "icon": "",
+                "icon": "fas fa-sun",
                 "color": "#a855f7",
-                "subtext": "Special focus on PV cells and renewable grids."
+                "image": "ee_solar_lab.jpg",
+                "description": "Practical study of photovoltaic systems and renewable grid integration. Features our on-campus solar installation."
             },
             {
-                "name": "Automation",
-                "icon": "",
+                "name": "Electrical Machines",
+                "icon": "fas fa-charging-station",
                 "color": "#a855f7",
-                "subtext": "PLC & SCADA based industrial automation training."
+                "image": "ee_machines_lab.jpg",
+                "description": "Operation and testing of DC/AC motors, transformers, and industrial control panels."
             }
         ],
         "hod": {
@@ -199,58 +187,5 @@
             "image": "",
             "faculty_id": "ee_hod_1"
         }
-    },
-    {
-        "id": "poly",
-        "name": "Polytechnic (Diploma)",
-        "icon": "fas fa-tools",
-        "theme_color": "#f97316",
-        "text_class": "text-warning",
-        "tagline": "\"Skill Based Learning\"",
-        "intake": 150,
-        "description": "The Polytechnic wing offers diploma courses in Mechanical, Electrical, and Civil Engineering, focusing on practical skills and industry readiness.",
-        "vision": "",
-        "mission": "",
-        "labs": [],
-        "hod": {
-            "name": "Prof. Nitesh Barde",
-            "role": "Head of Department",
-            "quote": "\"Empowering students with hands-on technical skills.\"",
-            "image": "",
-            "faculty_id": "poly_hod_1"
-        }
-    },
-    {
-        "id": "as",
-        "name": "Applied Science (1st Year)",
-        "icon": "fas fa-flask",
-        "theme_color": "#0891b2",
-        "text_class": "",
-        "tagline": "\"Foundations of Engineering\"",
-        "intake": 60,
-        "description": "The Applied Sciences department provides the essential scientific and mathematical foundation for all engineering disciplines.",
-        "vision": "",
-        "mission": "",
-        "labs": [
-            {
-                "name": "Chemistry Lab",
-                "icon": "fas fa-vial",
-                "color": "#0891b2",
-                "subtext": ""
-            },
-            {
-                "name": "Physics Lab",
-                "icon": "fas fa-atom",
-                "color": "#0891b2",
-                "subtext": ""
-            }
-        ],
-        "hod": {
-            "name": "Prof. TBD",
-            "role": "Head of Department",
-            "quote": "",
-            "image": "",
-            "faculty_id": ""
-        }
     }
-]
+]

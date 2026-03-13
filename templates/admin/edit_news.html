@@ -1,0 +1,53 @@
+{% extends "admin/layout_admin.html" %}
+
+{% block title %}Edit News - {{ item.title }}{% endblock %}
+{% block admin_title %}News Hub{% endblock %}
+{% block heading %}Refine Announcement{% endblock %}
+{% block subheading %}Update the details, date, or imagery for this news broadcast.{% endblock %}
+
+{% block content %}
+<div class="premium-card">
+    <form method="POST" enctype="multipart/form-data" style="padding: 32px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+            <div class="form-group" style="grid-column: span 2;">
+                <label class="premium-label">Announcement Title</label>
+                <input type="text" name="title" class="premium-input" value="{{ item.title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label class="premium-label">Event Date</label>
+                <input type="text" name="date" class="premium-input" value="{{ item.date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label class="premium-label">Featured Image</label>
+                {% if item.image %}
+                <div style="margin-bottom: 10px; font-size: 0.8rem; color: var(--text-muted);">Current: {{ item.image }}</div>
+                {% endif %}
+                <input type="file" name="image" class="premium-input" style="padding: 10px;">
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Leave empty to keep current image.</p>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label class="premium-label">Detailed Description</label>
+                <textarea name="description" rows="6" class="premium-input" style="resize: vertical;" required>{{ item.description }}</textarea>
+            </div>
+        </div>
+
+        <div style="margin-top: 32px; display: flex; justify-content: flex-end; gap: 12px;">
+            <a href="{{ url_for('manage_news') }}" class="premium-btn" style="background: var(--bg-off-white); color: var(--text-main); border: 1.5px solid var(--border);">Cancel</a>
+            <button type="submit" class="premium-btn" style="background: var(--accent); box-shadow: 0 4px 6px rgba(139, 92, 246, 0.2);">
+                <i class="fas fa-save" style="margin-right: 8px;"></i> Save Updates
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .premium-label { font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 8px; display: block; }
+    .premium-input { width: 100%; padding: 12px 16px; background: var(--bg-body); border: 1.5px solid var(--border); border-radius: 10px; color: var(--text-main); font-size: 0.9rem; transition: all 0.2s; }
+    .premium-input:focus { outline: none; border-color: var(--accent); background: white; box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1); }
+    .premium-btn { border: none; padding: 12px 24px; border-radius: 10px; color: white; background: var(--primary); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; text-decoration: none; }
+    .premium-btn:hover { transform: translateY(-2px); }
+</style>
+{% endblock %}

@@ -122,9 +122,11 @@
             <h4 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 12px;">Campus Assets</h4>
             <p style="color: var(--text-muted); margin-bottom: 24px; line-height: 1.6;">Maintain detailed information
                 about facilities, labs, and the image gallery.</p>
-            <div style="display: flex; gap: 12px;">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                 <a href="{{ url_for('manage_facilities') }}" class="btn-primary-action"
                     style="background: var(--success);">Facilities</a>
+                <a href="{{ url_for('manage_governance') }}" class="btn-primary-action"
+                    style="background: var(--success);">Governance</a>
                 <a href="{{ url_for('manage_gallery') }}" class="btn-outline-action">Gallery</a>
             </div>
         </div>

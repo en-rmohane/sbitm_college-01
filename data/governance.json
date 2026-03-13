@@ -1,0 +1,38 @@
+[
+    {
+        "id": "1",
+        "name": "AICTE",
+        "full_name": "All India Council for Technical Education",
+        "type": "Approval Body",
+        "description": "The statutory body and a national-level council for technical education, under Department of Higher Education.",
+        "logo": "aicte_logo.png",
+        "website": "https://www.aicte-india.org/"
+    },
+    {
+        "id": "2",
+        "name": "RGPV",
+        "full_name": "Rajiv Gandhi Proudyogiki Vishwavidyalaya",
+        "type": "Affiliating University",
+        "description": "Technological University of the State of Madhya Pradesh, providing affiliation to technical institutions.",
+        "logo": "rgpv_logo.png",
+        "website": "https://www.rgpv.ac.in/"
+    },
+    {
+        "id": "3",
+        "name": "DTE MP",
+        "full_name": "Directorate of Technical Education, Madhya Pradesh",
+        "type": "Regulatory Body",
+        "description": "Responsible for the development of technical education in the state of Madhya Pradesh.",
+        "logo": "dte_logo.png",
+        "website": "https://dte.mponline.gov.in/"
+    },
+    {
+        "id": "4",
+        "name": "BU Bhopal",
+        "full_name": "Barkatullah University, Bhopal",
+        "type": "Affiliating University (Management)",
+        "description": "A leading university in Madhya Pradesh for Management and other higher education courses.",
+        "logo": "bu_logo.png",
+        "website": "http://www.bubhopal.ac.in/"
+    }
+]
