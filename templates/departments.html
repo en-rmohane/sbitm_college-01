@@ -98,7 +98,7 @@
                     {% if dept.labs %}
                     <h3 style="color: var(--primary); margin-bottom: 20px;">Labs & Workshops</h3>
                     <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px;">
-                        {% for lab in dept.labs|truncate(4, True, '') %}
+                        {% for lab in dept.labs[:4] %}
                         <div style="background: white; border: 1px solid var(--border-color); border-radius: 6px; padding: 10px 15px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem;">
                             <i class="{{ lab.icon }}" style="color: {{ lab.color }};"></i>
                             <span style="font-weight: 500;">{{ lab.name }}</span>

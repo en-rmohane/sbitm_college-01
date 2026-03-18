@@ -127,8 +127,8 @@
         "tagline": "\"Building the Nation\"",
         "intake": 30,
         "description": "Our Civil Engineering department is equipped with heavy machinery for material testing and advanced surveying equipment like Total Stations. We focus on sustainable development.",
-        "vision": "",
-        "mission": "",
+        "vision": "\"To achieve excellence in technology, innovation, research, we aim to produce globally competent civil engineers with a strong commitment to rural outreach and Contribute for sustainable Socio-economic growth of the society.\u201d\r\n",
+        "mission": ".We employ innovative teaching practices, emphasizing social and technology-based extracurricular activities to support the institution's vision of diverse learner profiles.\r\n\r\n\u2022To establish collaborative partnership with industries, research and entities to enhance technical and management skills.\r\n",
         "labs": [
             {
                 "name": "Concrete Tech",
@@ -143,6 +143,62 @@
                 "color": "#22c55e",
                 "image": "civil_survey_lab.jpg",
                 "description": "Equipped with Total Stations, Theodolites, and GPS for accurate land measurement and mapping exercises."
+            },
+            {
+                "name": "Transportation lab",
+                "icon": "fas fa-map-marked-alt",
+                "color": "#22c55e",
+                "image": "",
+                "description": "The Transportation Engineering Lab provides practical knowledge of traffic systems, road materials, and highway engineering concepts.\r\nIt helps students develop skills in traffic analysis, material testing, and real-world transportation problem solving"
+            },
+            {
+                "name": "Material Testing Lab",
+                "icon": "fas fa-flask",
+                "color": "#1F2937",
+                "image": "",
+                "description": "The Material Testing Lab enables students to analyze the strength and properties of construction materials like cement, concrete, and steel. It helps develop practical skills in quality testing, safety standards, and real-world engineering applications."
+            },
+            {
+                "name": "Engineering Geology",
+                "icon": "fas fa-mountain",
+                "color": "#8D6E63",
+                "image": "",
+                "description": "The Engineering Geology Lab focuses on the study of rocks, minerals, and geological structures relevant to civil engineering projects. It helps students analyze site conditions, understand soil-rock interactions, and ensure safe and sustainable construction practices."
+            },
+            {
+                "name": "Soil Mechanics Lab",
+                "icon": "fas fa-layer-group",
+                "color": "#6D4C41",
+                "image": "",
+                "description": "The Soil Mechanics Lab studies soil behavior under different conditions, including compaction, permeability, and shear strength. It is essential for foundation design and geotechnical engineering applications."
+            },
+            {
+                "name": "Strength of Material Lab",
+                "icon": "fas fa-dumbbell",
+                "color": "#FB8C00",
+                "image": "",
+                "description": "This lab examines the mechanical properties of materials under various loads. Students perform tests to understand stress, strain, bending, and torsion for safe structural design."
+            },
+            {
+                "name": "Fluid Mechanics Lab",
+                "icon": "fas fa-water",
+                "color": "#0288D1",
+                "image": "",
+                "description": "The Fluid Mechanics Lab explores fluid behavior, pressure measurement, and flow dynamics. It helps students apply concepts to real-world systems like pipelines, open channels, and hydraulic machines."
+            },
+            {
+                "name": "Environmental Engineering Lab",
+                "icon": "fas fa-leaf",
+                "color": "#2E7D32",
+                "image": "",
+                "description": "This lab focuses on water and wastewater analysis, air quality testing, and environmental protection techniques. It prepares students to address sustainability and pollution control challenges."
+            },
+            {
+                "name": "Structural Analysis Lab",
+                "icon": "fas fa-building",
+                "color": "#5E35B1",
+                "image": "",
+                "description": "The Structural Analysis Lab helps students understand the behavior of structures under different loads. It includes analysis of beams, trusses, and frames to ensure safety and stability in construction."
             }
         ],
         "hod": {

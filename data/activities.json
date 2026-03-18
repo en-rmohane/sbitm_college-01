@@ -1,18 +1,26 @@
 [
     {
         "id": "1ad6ec22-1e0a-4b46-a562-7dce8ec23f94",
-        "title": "Inter-College Cricket Tournament",
+        "title": "Inter-College table tennis",
         "category": "sports",
-        "description": "SBITM wins the inter-college cricket trophy.",
-        "date": "60312-02-20",
-        "image": ""
+        "description": "",
+        "date": "2025-02-20",
+        "image": "DSC_6740.JPG"
     },
     {
         "id": "b8803d1a-6f57-436a-a472-45cf33315c4b",
-        "title": "Annual Cultural Fest - Tarang",
+        "title": "Annual Cultural Fest ",
         "category": "cultural",
         "description": "A night of music, dance and drama.",
-        "date": "60310-02-20",
-        "image": ""
+        "date": "2025-02-20",
+        "image": "DSC_6962.JPG"
+    },
+    {
+        "id": "b9fcc599-490a-4a8d-a0d5-b94f69597dd7",
+        "title": "Annual Cultural Fest",
+        "category": "cultural",
+        "description": "",
+        "date": "2025-02-20",
+        "image": "DSC_7257.JPG"
     }
 ]
