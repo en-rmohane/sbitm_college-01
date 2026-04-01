@@ -53,6 +53,11 @@
                     </div>
 
                     <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        {% if lab.room_no %}
+                        <div style="padding: 8px 15px; background: var(--primary-light); color: var(--primary); border-radius: 6px; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--primary);">
+                            <i class="fas fa-door-open" style="margin-right: 5px;"></i> Room: {{ lab.room_no }}
+                        </div>
+                        {% endif %}
                         <div style="padding: 8px 15px; background: var(--bg-off-white); border-radius: 6px; font-size: 0.9rem; color: var(--text-muted); border: 1px solid var(--border-color);">
                             <i class="fas fa-check-circle text-success" style="margin-right: 5px;"></i> Fully Equipped
                         </div>

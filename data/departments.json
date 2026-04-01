@@ -204,29 +204,79 @@
     },
     {
         "id": "ee",
-        "name": "Electrical Engineering",
+        "name": "Electrical & Electronics Engineering",
         "icon": "fas fa-bolt",
         "theme_color": "#a855f7",
         "text_class": "",
         "tagline": "\"Powering the World\"",
         "intake": 60,
-        "description": "The Electrical Engineering department focuses on power systems, control systems, and renewable energy sources. We prepare students for the heavy industries and power sector.",
-        "vision": "",
-        "mission": "",
+        "description": "The Department of Electrical & Electronics Engineering is dedicated to providing high-quality education and research in the field of power systems, control systems, and electronics. We prepare students for careers in the core electrical sector and emerging technology domains.",
+        "vision": "Unleashing the true potential of the youth and building them into focused, object oriented, economically successful and culturally positive individuals with commitment to outreach in rural sector and becomes a renowned institute of the region.",
+        "mission": "The authentic class academic ambience to ensure that our student understand, succeed and contribute in the rapidly changing society with the aim to develop technical and behavioral competencies, which are essential for achieving the success at global level.\r\n\r\nOur innovative teaching practice is focused on social and technology based extra-curricular activities, which truly demonstrate the value of the diverse profile of our learners.",
         "labs": [
             {
-                "name": "Solar Energy",
-                "icon": "fas fa-sun",
-                "color": "#a855f7",
-                "image": "ee_solar_lab.jpg",
-                "description": "Practical study of photovoltaic systems and renewable grid integration. Features our on-campus solar installation."
-            },
-            {
-                "name": "Electrical Machines",
+                "name": "Electrical Machine Lab",
+                "room_no": "106 (B)",
                 "icon": "fas fa-charging-station",
                 "color": "#a855f7",
-                "image": "ee_machines_lab.jpg",
-                "description": "Operation and testing of DC/AC motors, transformers, and industrial control panels."
+                "image": "",
+                "description": "Equipped with various DC and AC machines, transformers, and control panels for practical studies in electrical machines and drives."
+            },
+            {
+                "name": "Electrical Drives Lab",
+                "room_no": "201",
+                "icon": "fas fa-tachometer-alt",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Focuses on the control of electrical motors using power electronic converters and industrial drive systems."
+            },
+            {
+                "name": "Power Electronics & Microprocessor Lab",
+                "room_no": "202 (B)",
+                "icon": "fas fa-microchip",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Features state-of-the-art power electronic modules and microprocessor kits for advanced digital control and conversion studies."
+            },
+            {
+                "name": "Project Lab",
+                "room_no": "202 (A)",
+                "icon": "fas fa-project-diagram",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Dedicated space for final year projects, prototyping, and innovative research development."
+            },
+            {
+                "name": "Instrumentation Lab",
+                "room_no": "203",
+                "icon": "fas fa-tools",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Equipped with sensors, transducers, and measuring instruments for studying measurement techniques and industrial automation."
+            },
+            {
+                "name": "Network Analysis & Control System Lab",
+                "room_no": "204",
+                "icon": "fas fa-network-wired",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Focuses on circuit analysis, network theorems, and the study of feedback control systems and their stability."
+            },
+            {
+                "name": "Power System Lab",
+                "room_no": "205 (A)",
+                "icon": "fas fa-power-off",
+                "color": "#a855f7",
+                "image": "",
+                "description": "Provides facilities for studying power generation, transmission, distribution, and protection systems using digital simulators and hardware models."
+            },
+            {
+                "name": "Software Lab (MATLAB)",
+                "room_no": "215",
+                "icon": "fas fa-desktop",
+                "color": "#a855f7",
+                "image": "",
+                "description": "High-end computing facility with MATLAB and other simulation software for numerical analysis and system design."
             }
         ],
         "hod": {
