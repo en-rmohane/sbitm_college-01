@@ -131,13 +131,6 @@
         "mission": ".We employ innovative teaching practices, emphasizing social and technology-based extracurricular activities to support the institution's vision of diverse learner profiles.\r\n\r\n\u2022To establish collaborative partnership with industries, research and entities to enhance technical and management skills.\r\n",
         "labs": [
             {
-                "name": "Concrete Tech",
-                "icon": "fas fa-hard-hat",
-                "color": "#22c55e",
-                "image": "civil_concrete_lab.jpg",
-                "description": "Compression testing, slump tests, and material quality assessment for infrastructure development."
-            },
-            {
                 "name": "Surveying Lab",
                 "icon": "fas fa-map-marked-alt",
                 "color": "#22c55e",
