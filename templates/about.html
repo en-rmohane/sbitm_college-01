@@ -55,13 +55,15 @@
                 <div
                     style="width: 100px; height: 100px; flex-shrink: 0; overflow: hidden; border-radius: 50%; border: 3px solid var(--bg-off-white);">
                     {% if leader.image %}
-                    {% if 'director' in leader.image.lower() %}
-                    <img src="{{ url_for('static', filename='images/' + leader.image) }}"
-                        style="width: 100%; height: 100%; object-fit: cover;" alt="{{ leader.name }}">
-                    {% else %}
-                    <img src="{{ url_for('static', filename='images/faculty/' + leader.image) }}"
-                        style="width: 100%; height: 100%; object-fit: cover;" alt="{{ leader.name }}">
-                    {% endif %}
+                        {% if leader.image.startswith('http') %}
+                        <img src="{{ leader.image }}" style="width: 100%; height: 100%; object-fit: cover;" alt="{{ leader.name }}">
+                        {% elif 'director' in leader.image.lower() %}
+                        <img src="{{ url_for('static', filename='images/' + leader.image) }}"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="{{ leader.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/faculty/' + leader.image) }}"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="{{ leader.name }}">
+                        {% endif %}
                     {% else %}
                     <img src="{{ url_for('static', filename='images/sbitm_logo.png') }}"
                         style="width: 100%; height: 100%; object-fit: contain;" alt="Logo">

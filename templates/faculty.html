@@ -43,9 +43,13 @@
             <div class="hod-card">
                 <div class="hod-img-box">
                     {% if member.image %}
-                    <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
-                        alt="{{ member.name }}">
+                        {% if member.image.startswith('http') %}
+                        <img src="{{ member.image }}" onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'" alt="{{ member.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
+                            onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
+                            alt="{{ member.name }}">
+                        {% endif %}
                     {% else %}
                     <img src="{{ url_for('static', filename='images/faculty_placeholder.jpg') }}" alt="Default">
                     {% endif %}
@@ -72,9 +76,13 @@
             <div class="faculty-card">
                 <div class="faculty-img">
                     {% if member.image %}
-                    <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
-                        onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
-                        alt="{{ member.name }}">
+                        {% if member.image.startswith('http') %}
+                        <img src="{{ member.image }}" onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'" alt="{{ member.name }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/faculty/' + member.image) }}"
+                            onerror="this.src='{{ url_for('static', filename='images/faculty_placeholder.jpg') }}'"
+                            alt="{{ member.name }}">
+                        {% endif %}
                     {% else %}
                     <img src="{{ url_for('static', filename='images/faculty_placeholder.jpg') }}" alt="Default">
                     {% endif %}

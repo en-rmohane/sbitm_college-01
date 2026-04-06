@@ -23,7 +23,11 @@
             <div class="activity-card" data-category="{{ activity.category|lower }}">
                 <div class="activity-image">
                     {% if activity.image %}
-                    <img src="{{ url_for('serve_tmp_images', filename='activities/' + activity.image) }}" alt="{{ activity.title }}">
+                        {% if activity.image.startswith('http') %}
+                        <img src="{{ activity.image }}" alt="{{ activity.title }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/activities/' + activity.image) }}" alt="{{ activity.title }}">
+                        {% endif %}
                     {% else %}
                     <div class="placeholder-img">
                         <i class="fas fa-image"></i>

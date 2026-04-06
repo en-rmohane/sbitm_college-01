@@ -27,10 +27,17 @@
                 <!-- Lab Image -->
                 <div style="position: relative; min-height: 300px; background: var(--bg-off-white);">
                     {% if lab.image %}
-                    <img src="{{ url_for('static', filename='images/labs/' + lab.image) }}" 
-                         onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600?text={{ lab.name|replace(' ', '+') }}'"
-                         alt="{{ lab.name }}" 
-                         style="width: 100%; height: 100%; object-fit: cover;">
+                        {% if lab.image.startswith('http') %}
+                        <img src="{{ lab.image }}" 
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600?text={{ lab.name|replace(' ', '+') }}'"
+                             alt="{{ lab.name }}" 
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/labs/' + lab.image) }}" 
+                             onerror="this.onerror=null;this.src='https://via.placeholder.com/800x600?text={{ lab.name|replace(' ', '+') }}'"
+                             alt="{{ lab.name }}" 
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                        {% endif %}
                     {% else %}
                     <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: {{ dept.theme_color }}; opacity: 0.2;">
                         <i class="{{ lab.icon or 'fas fa-microscope' }}" style="font-size: 8rem;"></i>

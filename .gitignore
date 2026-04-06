@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+serviceAccountKey.json
+.env
+static/images/activities/
+static/images/faculty/
+static/images/facilities/
+static/images/gallery/
+static/images/labs/
+static/images/news/
+static/images/placements/
+data/*.json

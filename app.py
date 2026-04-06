@@ -8,6 +8,12 @@ import uuid
 app = Flask(__name__)
 app.secret_key = 'supersecretkey' # Needed for flash messages
 app.config['UPLOAD_FOLDER'] = 'static/images/faculty'
+app.config['GALLERY_FOLDER'] = 'static/images/gallery'
+app.config['NEWS_FOLDER'] = 'static/images/news'
+app.config['PLACEMENTS_FOLDER'] = 'static/images/placements'
+app.config['FACILITIES_FOLDER'] = 'static/images/facilities'
+app.config['ACTIVITIES_FOLDER'] = 'static/images/activities'
+app.config['LABS_FOLDER'] = 'static/images/labs'
 
 # Admin Credentials (Hardcoded for simplicity)
 app.config['ADMIN_USERNAME'] = 'admin'
@@ -23,30 +29,49 @@ def safe_makedirs(path):
         else:
             raise
 
-# Helper to save uploaded files safely (handles Vercel read-only filesystem)
+# Helper to save uploaded files safely (handles Firebase Cloud Storage)
 def save_file_safely(file, folder):
     filename = secure_filename(file.filename)
     if not filename:
         return ""
         
-    # Standard path
+    # Standard path for local development fallback or if Firebase is not available
     target_path = os.path.join(folder, filename)
     
+    # Firebase Storage Upload
+    from firebase_admin import storage
     try:
-        # Try saving to standard location first
-        file.save(target_path)
+        bucket = storage.bucket()
+        if bucket:
+            # Create a unique blob name using UUID to avoid collisions
+            ext = os.path.splitext(filename)[1]
+            blob_name = f"{folder}/{uuid.uuid4()}{ext}"
+            blob = bucket.blob(blob_name)
+            
+            # Reset file pointer and upload
+            file.seek(0)
+            blob.upload_from_file(file, content_type=file.content_type)
+            
+            # Make the blob publicly viewable
+            blob.make_public()
+            print(f"Uploaded to Firebase: {blob.public_url}")
+            return blob.public_url
+    except Exception as e:
+        print(f"Firebase Storage upload error: {e}")
+
+    # Fallback to local /tmp on Vercel or local static folder
+    try:
+        base_folder = '/tmp' if os.environ.get('VERCEL') else '.'
+        full_folder = os.path.join(base_folder, folder)
+        os.makedirs(full_folder, exist_ok=True)
+        
+        final_path = os.path.join(full_folder, filename)
+        file.seek(0)
+        file.save(final_path)
         return filename
-    except OSError as e:
-        if e.errno == 30: # Read-only file system
-            # Redirect to /tmp on Vercel
-            tmp_folder = os.path.join('/tmp', folder)
-            os.makedirs(tmp_folder, exist_ok=True)
-            tmp_path = os.path.join(tmp_folder, filename)
-            file.save(tmp_path)
-            print(f"Redirected upload to {tmp_path}")
-            return filename
-        else:
-            raise
+    except Exception as e:
+        print(f"Fallback save error: {e}")
+        return ""
 
 # Custom route to serve static files from /tmp on Vercel
 @app.route('/static/images/<path:filename>')
@@ -69,26 +94,15 @@ def favicon_ico():
 def favicon_png():
     return app.send_static_file('favicon.png')
 
-# Ensure upload directory exists
-safe_makedirs(app.config['UPLOAD_FOLDER'])
-
-app.config['GALLERY_FOLDER'] = 'static/images/gallery'
-safe_makedirs(app.config['GALLERY_FOLDER'])
-
-app.config['NEWS_FOLDER'] = 'static/images/news'
-safe_makedirs(app.config['NEWS_FOLDER'])
-
-app.config['PLACEMENTS_FOLDER'] = 'static/images/placements'
-safe_makedirs(app.config['PLACEMENTS_FOLDER'])
-
-app.config['FACILITIES_FOLDER'] = 'static/images/facilities'
-safe_makedirs(app.config['FACILITIES_FOLDER'])
-
-app.config['ACTIVITIES_FOLDER'] = 'static/images/activities'
-safe_makedirs(app.config['ACTIVITIES_FOLDER'])
-
-app.config['LABS_FOLDER'] = 'static/images/labs'
-safe_makedirs(app.config['LABS_FOLDER'])
+# Ensure upload directory exists locally (won't affect Vercel root but good for local)
+if not os.environ.get('VERCEL'):
+    safe_makedirs(app.config['UPLOAD_FOLDER'])
+    safe_makedirs(app.config['GALLERY_FOLDER'])
+    safe_makedirs(app.config['NEWS_FOLDER'])
+    safe_makedirs(app.config['PLACEMENTS_FOLDER'])
+    safe_makedirs(app.config['FACILITIES_FOLDER'])
+    safe_makedirs(app.config['ACTIVITIES_FOLDER'])
+    safe_makedirs(app.config['LABS_FOLDER'])
 
 # Login Required Decorator
 def login_required(f):
@@ -475,6 +489,34 @@ def delete_leadership(id):
     utils.save_json('leadership.json', leadership_list)
     flash('Leadership profile deleted.', 'info')
     return redirect(url_for('manage_leadership'))
+
+@app.route('/admin/leadership/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit_leadership(id):
+    leadership_list = utils.load_json('leadership.json')
+    leader = next((l for l in leadership_list if l['id'] == id), None)
+    
+    if not leader:
+        flash('Leadership profile not found.', 'danger')
+        return redirect(url_for('manage_leadership'))
+
+    if request.method == 'POST':
+        leader['name'] = request.form.get('name')
+        leader['role'] = request.form.get('role')
+        leader['designation'] = request.form.get('designation')
+        leader['message'] = request.form.get('message')
+        
+        # Handle Image Upload - Only update if a new file is provided
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                leader['image'] = save_file_safely(file, app.config['UPLOAD_FOLDER'])
+
+        utils.save_json('leadership.json', leadership_list)
+        flash('Leadership details updated successfully!', 'success')
+        return redirect(url_for('manage_leadership'))
+        
+    return render_template('admin/edit_leadership.html', leader=leader)
 
 @app.route('/departments')
 def departments():
